@@ -1,0 +1,30 @@
+body{
+    background: fixed;
+    background-image: url("../assets/background-game.png");
+    background-size: contain;
+    padding: 20px;
+}
+#cards-container{
+    width: 45%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 5%;
+}
+#cards-container .image-cards{
+    background-color: black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px black;
+}
+#cards-container .image-cards img{
+    width: 100%;
+    border: 2px solid rgba(75, 75, 75, 0.799);
+    box-shadow: 2px 2px 5px black;
+    border-radius: 10px;
+    transition: scale 1s ease;
+}
+#cards-container .image-cards img:hover{
+    scale: 1.1;
+}
+
+

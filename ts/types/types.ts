@@ -1,7 +1,7 @@
 
 interface ImageTileType{
     id:number,
-    image:string,
+    imageUrl:string,
     name:string
 }
 

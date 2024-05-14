@@ -1,79 +1,47 @@
-
-// change player
-const playerChange = (playerOne: any, playerTwo: any): void => {
-  if (playerOne.playStatus === true) {
-    playerOne.playStatus = false;
-    playerTwo.playStatus = true;
-    clearInterval(playerInterval);
-  } else if (playerTwo.playStatus === true) {
-    playerOne.playStatus = true;
-    playerTwo.playStatus = false;
-    clearInterval(playerInterval);
-  }
-};
-
-// timer function
-const playerInterval = setInterval(playerChange, 1500);
-
-
 import { ImageTileType } from "./types/types";
 
-let selectedCards:number[] = [];
-
-  let imageTiles:HTMLCollectionOf<HTMLDivElement>  = document.getElementsByClassName("image") as  HTMLCollectionOf<HTMLDivElement>                //change class name
-  for(let i=0; i<imageTiles.length; i++){
-    imageTiles[i].addEventListener("click", function(){
-        selectedCards.push(Number(imageTiles[i].id))
-        // selectedCards.push(Number(imageTiles[i].getAttribute('data-imgId')))
-        checkCards(selectedCards)
-    })
-
-  }
-  
-
-function checkCards(selection:number[]) {
-  if (selection.length === 2) {
-    if (document.getElementById(selection[0].toString())?.getAttribute('data-imgId') === document.getElementById(selection[0].toString())?.getAttribute('data-imgId') ) {
-        document.getElementById(selection[0].toString())?.style.visibility("none");
-      addScore();                                             //function to add score
-    } else {
-      changeTurn();                                           //function to change turn
-    }
-    selectedCards = [];
-  }
-}
-
-const imageTile = [
+const imageData = [
   {
     id: 1,
     name: "Example 1",
-    url: "https://th.bing.com/th/id/OIP.rmim2jYzNpSCslo60INohQHaF9?w=215&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+    imageUrl: "../assets/animals/cat.png",
   },
   {
     id: 2,
     name: "Example 2",
-    url: "https://th.bing.com/th/id/OIP.rmim2jYzNpSCslo60INohQHaF9?w=215&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+    imageUrl: "../assets/animals/deer.png",
   },
   {
     id: 3,
     name: "Example 3",
-    url: "https://th.bing.com/th/id/OIP.rmim2jYzNpSCslo60INohQHaF9?w=215&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+    imageUrl: "../assets/animals/dog.png",
   },
   {
     id: 4,
     name: "Example 4",
-    url: "https://th.bing.com/th/id/OIP.rmim2jYzNpSCslo60INohQHaF9?w=215&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+    imageUrl: "../assets/animals/elephant.png",
+  },
+  {
+    id: 5,
+    name: "Example 4",
+    imageUrl: "../assets/animals/panda.png",
+  },
+  {
+    id: 6,
+    name: "Example 4",
+    imageUrl: "../assets/animals/rabbit.png",
+  },
+  {
+    id: 7,
+    name: "Example 4",
+    imageUrl: "../assets/animals/squirrel.png",
+  },
+  {
+    id: 8,
+    name: "Example 4",
+    imageUrl: "../assets/animals/tiger.png",
   },
 ];
-
-function shuffleArray(array: any[]) {
-  for (var i = array.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-}
 
 const loadCards = (data: ImageTileType[], noOfCards: number) => {
   //collect noOfCards from ImageTileType and store it in a variable tiles
@@ -86,17 +54,115 @@ const loadCards = (data: ImageTileType[], noOfCards: number) => {
   shuffleArray(array);
 
   //using for loop add image to html file
-  const image = document.getElementById("tile");
+  const imageTileContainer = document.getElementById("cards-container");
 
   for (let i = 0; i < noOfCards * 2; i++) {
     const tile = array[i];
-    const imageElement = document.createElement("img");
-    imageElement.src = tile.url;
-    imageElement.alt = tile.name;
+    // console.log(tile);
 
-    image?.appendChild(imageElement);
+    const imageElement = document.createElement("div");
+    imageElement.classList.add("image-cards");
+    imageElement.id =`img${i}`;
+    imageElement.dataset.imgId = tile.id.toString();
+    imageElement.innerHTML = `
+    <img src="${tile.imageUrl}" alt="">
+    `;
+
+    imageTileContainer?.appendChild(imageElement);
   }
 };
 
-loadCards(imageTile, 8);
+loadCards(imageData, 8);
 
+let imageTiles: HTMLCollectionOf<HTMLDivElement> =
+  document.getElementsByClassName(
+    "image-cards"
+  ) as HTMLCollectionOf<HTMLDivElement>;
+//change class name
+console.log(imageTiles);
+
+for (let i = 0; i < imageTiles.length; i++) {
+  imageTiles[i].addEventListener("click", function () {
+    console.log(imageTiles[i].dataset.imgId);
+
+    selectedCards.push(imageTiles[i]);
+    // selectedCards.push(Number(imageTiles[i].getAttribute('data-imgId')))
+    checkCards(selectedCards);
+  });
+}
+
+let selectedCards: HTMLDivElement[] = [];
+function checkCards(selection: HTMLDivElement[]) {
+  if (selection.length === 2) {
+    if (selection[0].dataset.imgId === selection[1].dataset.imgId) {
+      console.log(selection[0]);
+      
+      console.log(document.getElementById(selection[0].id));
+      // document.getElementById(selection[0].id)?.hidden
+      document.getElementById(selection[0].id)!.style.visibility = 'hidden';
+      document.getElementById(selection[1].id)!.style.visibility = 'hidden';
+
+      // document.getElementById(selection[0].toString())?.style.visibility("none");
+      console.log("right choice");
+      if (playerOne.playStatus)
+        updateLivescore(playerOne); 
+      else if(playerTwo.playStatus)
+        updateLivescore(playerTwo)                                            //function to add score
+    } else {
+      console.log("wrong choice");  
+      playerChange(playerOne,playerTwo);                                       //function to change turn
+    }
+    selectedCards = [];
+  }
+}
+
+let playerOne = {
+  playerName:"Player 1",
+  playStatus:true,
+  points: 0
+}
+let playerTwo = {
+  playerName:"Player 2",
+  playStatus:false,
+  points: 0
+}
+// change player
+const playerChange = (playerOne: any, playerTwo: any): void => {
+  if (playerOne.playStatus === true) {
+    playerOne.playStatus = false;
+    playerTwo.playStatus = true;
+    // clearInterval(playerInterval);
+    console.log("player Two turn");
+    
+  } else if (playerTwo.playStatus === true) {
+    playerOne.playStatus = true;
+    playerTwo.playStatus = false;
+    console.log("player one turn");
+    // clearInterval(playerInterval);
+  }
+};
+
+// timer function
+// const playerInterval = setInterval(playerChange, 1500);
+
+// type Score = {
+//   player1: number;
+//   player2: number;
+// };
+
+// let score: Score = { player1: 0, player2: 0 }; // initializing
+
+const updateLivescore = (player: any) => {
+player.points+=1;
+console.log(player.playerName,player.points);
+
+};
+
+function shuffleArray(array: any[]) {
+  for (var i = array.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+}

@@ -1,3 +1,4 @@
+
 interface ImageTileType{
     id:number,
     image:string,
@@ -5,3 +6,4 @@ interface ImageTileType{
 }
 
 export{ImageTileType};
+

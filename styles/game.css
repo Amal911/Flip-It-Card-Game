@@ -12,19 +12,43 @@ body{
     margin-top: 5%;
 }
 #cards-container .image-cards{
-    background-color: black;
+    /* background-color: rgb(90, 90, 90); */
     border-radius: 10px;
-    box-shadow: 2px 2px 5px black;
+    /* box-shadow: 2px 2px 5px rgb(90, 90, 90); */
 }
 #cards-container .image-cards img{
     width: 100%;
     border: 2px solid rgba(75, 75, 75, 0.799);
-    box-shadow: 2px 2px 5px black;
+    box-shadow: 2px 2px 5px rgb(90, 90, 90);
     border-radius: 10px;
-    transition: scale 1s ease;
+    transition: scale .5s ease, transform .5s;
 }
-#cards-container .image-cards img:hover{
+#cards-container .image-cards:hover img{
     scale: 1.1;
+    /* transform: rotateY(360deg); */
+}
+
+
+
+
+#clicker { 
+    width: 100px; 
+    height: 100px; 
+    background-color: Green; 
+}
+
+.rotating { 
+    -webkit-transition: all 0.3s ;
+    -moz-transition: all 0.3s ;
+    -o-transition: all 0.3s ;
+    transition: all 0.3s ;
+}
+
+.rotated { 
+    transform:rotateY(360deg);
+    -webkit-transform:rotateY(360deg);
+    -moz-transform:rotateY(360deg); 
+    -o-transform:rotateY(360deg);
 }
 
 

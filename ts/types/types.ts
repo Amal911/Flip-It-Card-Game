@@ -2,8 +2,9 @@ interface PlayerType{
     id:number,
     playerName:string,
     playerScore:number,
+    playerStatus:boolean,
 }
-export{PlayerType}
+
 
 interface ImageTileType{
     id:number,
@@ -11,5 +12,5 @@ interface ImageTileType{
     name:string
 }
 
-export{ImageTileType};
+export{ImageTileType,PlayerType};
 

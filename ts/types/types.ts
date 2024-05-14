@@ -1,6 +1,9 @@
-interface ImageTileType {
-  id: number;
-  name: string;
-  url: string;
+
+interface ImageTileType{
+    id:number,
+    image:string,
+    name:string
 }
-export { ImageTileType };
+
+export{ImageTileType};
+

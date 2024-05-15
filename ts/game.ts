@@ -151,6 +151,7 @@ function checkCards(selection: HTMLDivElement[]) {
     }
     selectedCards = [];
     if (imagesId.length == 0) getWinner(playerOne, playerTwo);
+    
   }
 }
 

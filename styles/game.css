@@ -1,13 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
+
 body {
     margin: 0;
     padding: 0px;
 }
+
+
   #game-section {
     background-image: url("../assets/background-game.png");
     width: 100vw;
     height: 100vh;
-    background-size: cover;
+    background-size: contain;
     /* padding:10px ; */
     display: flex;
     align-items: center;
@@ -17,20 +21,22 @@ body {
   flex-direction: row;
 }     
 #game-container #live-score-card{
-  display: flex;
-  flex-direction: column;
   gap: 30px;
   padding: 20px;
-  height: 380px;
+  /* height: ; */
   border-radius: 20px;
   border: 5px solid black;
-  background: rgb(62,62,62);
-  background: linear-gradient(138deg, rgba(33, 33, 33,0.9) 0%, rgba(158, 21, 117,0.9) 52%, rgba(38, 38, 38,0.9) 100%);
+  /* background-color: rgba(255, 208, 253, 0.5); */
+  background-image: url("../assets/background-score-card.jpg");
+  background-size: cover;
+  box-shadow: 2px 2px 3px rgb(27, 27, 27);
+  
 } 
 #game-container #live-score-card h3{
   margin-top: -50px;
   padding: 10px 20px;
   border-radius: 20px;
+  text-align: center;
   border: 3px solid black;
   background-color: rgb(214, 200, 179);
   color: black;
@@ -38,37 +44,49 @@ body {
   
 }
 #game-container #live-score-card .player{
-  display: flex;
-  flex-direction: row;
   gap: 20px;
   padding: 10px;
   border-radius: 20px;
-  background-color: rgb(205, 219, 255);
-  border: 3px solid black;
+  box-shadow: 2px 2px 3px black;
+}
+#game-container #live-score-card #player1{
+  background-color: rgba(228, 149, 149, 0.9);
+  border: 5px solid rgb(0, 255, 8);
+}
+#game-container #live-score-card #player2{
+  background-color: rgba(157, 149, 228, 0.9);
+  border: 5px solid rgb(87, 87, 87);
 }
 #game-container #live-score-card .player .player-icon img{
-  width: 60px;
+  width: 70px;
   border-radius: 50%;
+  background-color: white;
   border: 1px solid black;
+  box-shadow: 0px 0px 6px black;
 }
 #game-container #live-score-card .player .player-name-score{
-  display: flex;
-  flex-direction: column;
   padding:10px;
   gap: 10px;
 }
-#game-container #live-score-card .player .player-name-score .player-name{
+#game-container #live-score-card .player .player-name-score .player-styles{
   border: 1px solid black;
   padding: 5px 10px;
   text-align: center;
   border-radius: 10px;
+  font-family: "Rowdies", sans-serif;
+  box-shadow: 1px 1px 3px black;
+}
+#game-container #live-score-card .player .player-name-score .player-name{
+  font-size: 20px;
+  background-color: bisque;
 }
 #game-container #live-score-card .player .player-name-score .player-score{
-  border: 1px solid black;
-  padding: 5px 10px;
-  text-align: center;
-  border-radius: 10px;
+  font-size: 40px;
+  background-color: rgb(0, 213, 255);
 }
+
+
+
 
 #cards-container{
     width: 45%;

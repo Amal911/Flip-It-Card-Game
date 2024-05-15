@@ -41,17 +41,32 @@ const imageData = [
     },
 ];
 let imagesId = [];
+let categoryBtns = document.getElementsByClassName("category-btn");
+for (let i = 0; i < categoryBtns.length; i++) {
+    categoryBtns[i].addEventListener("click", () => {
+        categorySelection(categoryBtns[i].value);
+    });
+}
+const addImageEventListener = () => {
+    let imageTiles = document.getElementsByClassName("image-cards");
+    for (let i = 0; i < imageTiles.length; i++) {
+        imageTiles[i].addEventListener("click", function () {
+            imageTiles[i].classList.toggle("rotated");
+            let image = imageTiles[i].getElementsByTagName("img");
+            let imgData = imageData.filter((img) => Number(imageTiles[i].dataset.imgId) == img.id);
+            image[0].src = imgData[0].imageUrl;
+            selectedCards.push(imageTiles[i]);
+            checkCards(selectedCards);
+        });
+    }
+};
 const loadCards = (data, noOfCards) => {
-    //collect noOfCards from ImageTileType and store it in a variable tiles
     const tiles = data.slice(0, noOfCards);
-    tiles.forEach(tile => {
+    tiles.forEach((tile) => {
         imagesId.push(tile.id);
     });
-    //using spread store 2 tiles array in a single array
     const array = [...tiles, ...tiles];
-    //shuffle the array
     shuffleArray(array);
-    //using for loop add image to html file
     const imageTileContainer = document.getElementById("cards-container");
     for (let i = 0; i < noOfCards * 2; i++) {
         const tile = array[i];
@@ -67,36 +82,17 @@ const loadCards = (data, noOfCards) => {
         // <img src="${tile.imageUrl}" alt="">
         imageTileContainer === null || imageTileContainer === void 0 ? void 0 : imageTileContainer.appendChild(imageElement);
     }
+    addImageEventListener();
 };
-loadCards(imageData, 8);
-let imageTiles = document.getElementsByClassName("image-cards");
-//change class name
-// console.log(imageTiles);
-for (let i = 0; i < imageTiles.length; i++) {
-    imageTiles[i].addEventListener("click", function () {
-        // console.log(imageTiles[i].dataset.imgId);
-        // console.log(imageTiles[i]);
-        imageTiles[i].classList.toggle('rotated');
-        let image = imageTiles[i].getElementsByTagName('img');
-        let imgData = imageData.filter((img) => Number(imageTiles[i].dataset.imgId) == img.id);
-        image[0].src = (imgData[0].imageUrl);
-        // console.log(image);
-        selectedCards.push(imageTiles[i]);
-        // selectedCards.push(Number(imageTiles[i].getAttribute('data-imgId')))
-        checkCards(selectedCards);
-    });
-}
+console.log("asd");
+// loadCards(imageData, 8);
+// addImageEventListener();
 let selectedCards = [];
 function checkCards(selection) {
     if (selection.length === 2) {
         if (selection[0].dataset.imgId === selection[1].dataset.imgId) {
-            // console.log(selection[0]);
-            // console.log(imagesId);
-            // console.log(document.getElementById(selection[0].id));
-            // document.getElementById(selection[0].id)?.hidden
             document.getElementById(selection[0].id).style.visibility = "hidden";
             document.getElementById(selection[1].id).style.visibility = "hidden";
-            // document.getElementById(selection[0].toString())?.style.visibility("none");
             console.log("right choice");
             imagesId = imagesId.filter((id) => id != Number(selection[0].dataset.imgId));
             if (playerOne.playerStatus)
@@ -108,10 +104,10 @@ function checkCards(selection) {
             console.log("wrong choice");
             playerChange(playerOne, playerTwo); //function to change turn
             setTimeout(() => {
-                selection[0].classList.toggle('rotated');
-                selection[1].classList.toggle('rotated');
-                selection[0].getElementsByTagName('img')[0].src = "../assets/bg.png";
-                selection[1].getElementsByTagName('img')[0].src = "../assets/bg.png";
+                selection[0].classList.toggle("rotated");
+                selection[1].classList.toggle("rotated");
+                selection[0].getElementsByTagName("img")[0].src = "../assets/bg.png";
+                selection[1].getElementsByTagName("img")[0].src = "../assets/bg.png";
             }, 1000);
         }
         selectedCards = [];
@@ -182,5 +178,10 @@ const getWinner = (player1, player2) => {
         winnerList.push(player2);
     }
     return winnerList;
+};
+const categorySelection = (categoryName) => {
+    console.log(categoryName);
+    loadCards(imageData, 8);
+    document.getElementById("category-section").style.display = "none";
 };
 export {};

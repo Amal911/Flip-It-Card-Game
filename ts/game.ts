@@ -200,19 +200,60 @@ function shuffleArray(array: any[]) {
   }
 }
 
+// const getWinner = (player1: PlayerType, player2: PlayerType): PlayerType[] => {
+//   let winnerList: PlayerType[] = [];
+//   if (player1.playerScore > player2.playerScore) {
+//     winnerList.push(player1);
+//     console.log(player1.playerName + " Wins with score " + player1.playerScore);
+//   } else if (player1.playerScore < player2.playerScore) {
+//     console.log(player2.playerName + " Wins with score " + player2.playerScore);
+//     winnerList.push(player2);
+//   } else {
+//     console.log("Draw");
+
+//     winnerList.push(player1);
+//     winnerList.push(player2);
+//   }
+//   return winnerList;
+// };
+
+
 const getWinner = (player1: PlayerType, player2: PlayerType): PlayerType[] => {
   let winnerList: PlayerType[] = [];
   if (player1.playerScore > player2.playerScore) {
     winnerList.push(player1);
     console.log(player1.playerName + " Wins with score " + player1.playerScore);
+
+
+    document.getElementById("game-section")!.style.display = "none";
+    const app = document.getElementById("winner-container");
+    const p = document.createElement("p");
+    p.textContent = "Player One Won";
+    app?.appendChild(p);
+    
+
   } else if (player1.playerScore < player2.playerScore) {
     console.log(player2.playerName + " Wins with score " + player2.playerScore);
     winnerList.push(player2);
+
+    document.getElementById("game-section")!.style.display = "none";
+    const app = document.getElementById("winner-container");
+    const p = document.createElement("p");
+    p.textContent = "Player Two Won";
+    app?.appendChild(p);
+
   } else {
     console.log("Draw");
 
     winnerList.push(player1);
     winnerList.push(player2);
+
+    document.getElementById("game-section")!.style.display = "none";
+    const app = document.getElementById("winner-container");
+    const p = document.createElement("p");
+    p.textContent = "Draw";
+    app?.appendChild(p);
+
   }
   return winnerList;
 };

@@ -77,3 +77,32 @@ body {
     height: 100%;
     
 }
+
+#winner-section {
+    background-image: url("../assets/winner_bg.png");
+    background-repeat:no-repeat;
+    height: 100vh;
+    background-size: contain;
+    background-position: 50%;
+    
+    align-items: center;
+    justify-content: center;
+   
+    
+    
+
+  }
+
+  #winner-container{
+    
+    height: 100%;
+    text-align: center;
+    font-size:3.0vw;
+    font-weight: 600;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #f2d484;
+    vertical-align: middle;
+    line-height:34rem;
+    
+    
+}

@@ -46,18 +46,16 @@ const imageData = [
 let imagesId:number[]=[];
 
 const loadCards = (data: ImageTileType[], noOfCards: number) => {
-  //collect noOfCards from ImageTileType and store it in a variable tiles
+  
   const tiles = data.slice(0, noOfCards);
   tiles.forEach(tile => {
     imagesId.push(tile.id)
   });
-  //using spread store 2 tiles array in a single array
+  
   const array = [...tiles, ...tiles];
 
-  //shuffle the array
   shuffleArray(array);
 
-  //using for loop add image to html file
   const imageTileContainer = document.getElementById("cards-container");
 
   for (let i = 0; i < noOfCards * 2; i++) {
@@ -84,21 +82,19 @@ let imageTiles: HTMLCollectionOf<HTMLDivElement> =
   document.getElementsByClassName(
     "image-cards"
   ) as HTMLCollectionOf<HTMLDivElement>;
-//change class name
-console.log(imageTiles);
+
 
 for (let i = 0; i < imageTiles.length; i++) {
   imageTiles[i].addEventListener("click", function () {
-    console.log(imageTiles[i].dataset.imgId);
-    console.log(imageTiles[i]);
+
     imageTiles[i].classList.toggle('rotated');
     let image = imageTiles[i]!.getElementsByTagName('img');
     let imgData = imageData.filter((img)=>Number(imageTiles[i].dataset.imgId)==img.id)
     image[0].src=(imgData[0].imageUrl)
-    console.log(image);
+
     
     selectedCards.push(imageTiles[i]);
-    // selectedCards.push(Number(imageTiles[i].getAttribute('data-imgId')))
+
     checkCards(selectedCards);
   });
 }
@@ -107,15 +103,10 @@ let selectedCards: HTMLDivElement[] = [];
 function checkCards(selection: HTMLDivElement[]) {
   if (selection.length === 2) {
     if (selection[0].dataset.imgId === selection[1].dataset.imgId) {
-      // console.log(selection[0]);
-      console.log(imagesId);
-      
-      console.log(document.getElementById(selection[0].id));
-      // document.getElementById(selection[0].id)?.hidden
+
       document.getElementById(selection[0].id)!.style.visibility = "hidden";
       document.getElementById(selection[1].id)!.style.visibility = "hidden";
-      
-      // document.getElementById(selection[0].toString())?.style.visibility("none");
+
       console.log("right choice");
       imagesId=imagesId.filter((id)=>id!=Number(selection[0].dataset.imgId))
       if (playerOne.playerStatus) updateLivescore(playerOne);
@@ -196,12 +187,12 @@ const getWinner = (player1: PlayerType, player2: PlayerType):PlayerType[] => {
   let winnerList: PlayerType[] = [];
   if (player1.playerScore > player2.playerScore){
     winnerList.push(player1);
-    console.log(player1.playerName+ "Wins with score "+player1.playerScore);
+    console.log(player1.playerName+ " Wins with score "+player1.playerScore);
     
   } 
   else if (player1.playerScore < player2.playerScore) 
     {
-      console.log(player2.playerName+ "Wins with score "+player2.playerScore);
+      console.log(player2.playerName+ " Wins with score "+player2.playerScore);
       winnerList.push(player2);
     }
   else {

@@ -71,16 +71,16 @@ const loadCards = (data, noOfCards) => {
 loadCards(imageData, 8);
 let imageTiles = document.getElementsByClassName("image-cards");
 //change class name
-console.log(imageTiles);
+// console.log(imageTiles);
 for (let i = 0; i < imageTiles.length; i++) {
     imageTiles[i].addEventListener("click", function () {
-        console.log(imageTiles[i].dataset.imgId);
-        console.log(imageTiles[i]);
+        // console.log(imageTiles[i].dataset.imgId);
+        // console.log(imageTiles[i]);
         imageTiles[i].classList.toggle('rotated');
         let image = imageTiles[i].getElementsByTagName('img');
         let imgData = imageData.filter((img) => Number(imageTiles[i].dataset.imgId) == img.id);
         image[0].src = (imgData[0].imageUrl);
-        console.log(image);
+        // console.log(image);
         selectedCards.push(imageTiles[i]);
         // selectedCards.push(Number(imageTiles[i].getAttribute('data-imgId')))
         checkCards(selectedCards);
@@ -91,8 +91,8 @@ function checkCards(selection) {
     if (selection.length === 2) {
         if (selection[0].dataset.imgId === selection[1].dataset.imgId) {
             // console.log(selection[0]);
-            console.log(imagesId);
-            console.log(document.getElementById(selection[0].id));
+            // console.log(imagesId);
+            // console.log(document.getElementById(selection[0].id));
             // document.getElementById(selection[0].id)?.hidden
             document.getElementById(selection[0].id).style.visibility = "hidden";
             document.getElementById(selection[1].id).style.visibility = "hidden";
@@ -170,10 +170,10 @@ const getWinner = (player1, player2) => {
     let winnerList = [];
     if (player1.playerScore > player2.playerScore) {
         winnerList.push(player1);
-        console.log(player1.playerName + "Wins with score " + player1.playerScore);
+        console.log(player1.playerName + " Wins with score " + player1.playerScore);
     }
     else if (player1.playerScore < player2.playerScore) {
-        console.log(player2.playerName + "Wins with score " + player2.playerScore);
+        console.log(player2.playerName + " Wins with score " + player2.playerScore);
         winnerList.push(player2);
     }
     else {

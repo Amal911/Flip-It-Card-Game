@@ -1,54 +1,90 @@
-body{
-    background: fixed;
-    background-image: url("../assets/background-game.png");
-    background-size: contain;
-    padding: 20px;
+body {
+  background: fixed;
+  /* background-image: url("../assets/background-game.png"); */
+  /* padding: 20px; */
+  margin: 0;
+  padding: 0px;
+  /* background-size: contain; */
 }
-#cards-container{
-    width: 45%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 20px;
-    margin-top: 5%;
+#game-section {
+  background-image: url("../assets/background-game.png");
+  width: 100vw;
+  height: 100vh;
+  background-size: contain;
+  /* padding:10px ; */
+  display: flex;
+  align-items: center;
 }
-#cards-container .image-cards{
-    /* background-color: rgb(90, 90, 90); */
-    border-radius: 10px;
-    /* box-shadow: 2px 2px 5px rgb(90, 90, 90); */
+#cards-container {
+  width: 45%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  /* margin-top: 5%; */
 }
-#cards-container .image-cards img{
-    width: 100%;
-    border: 2px solid rgba(75, 75, 75, 0.799);
-    box-shadow: 2px 2px 5px rgb(90, 90, 90);
-    border-radius: 10px;
-    transition: scale .5s ease, transform .5s;
+#cards-container .image-cards {
+  /* background-color: rgb(90, 90, 90); */
+  border-radius: 10px;
+  /* box-shadow: 2px 2px 5px rgb(90, 90, 90); */
 }
-#cards-container .image-cards:hover img{
-    scale: 1.1;
-    /* transform: rotateY(360deg); */
+#cards-container .image-cards img {
+  width: 100%;
+  border: 2px solid rgba(75, 75, 75, 0.799);
+  box-shadow: 2px 2px 5px rgb(90, 90, 90);
+  border-radius: 10px;
+  transition: scale 0.5s ease, transform 0.5s;
+}
+#cards-container .image-cards:hover img {
+  scale: 1.1;
+  /* transform: rotateY(360deg); */
+}
+#clicker {
+  width: 100px;
+  height: 100px;
+  background-color: Green;
+}
+.rotating {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.rotated {
+  transform: rotateY(360deg);
+  -webkit-transform: rotateY(360deg);
+  -moz-transform: rotateY(360deg);
+  -o-transform: rotateY(360deg);
+}
+#login {
+  background-image: url("../assets/background-game.png");
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+}
+.card {
+  border-radius: 40px;
+}
+#signup-section {
+  display: none;
+}
+.submit-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.heading {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+}
+.toogleScreen {
+  cursor: pointer;
 }
 
 
-
-
-#clicker { 
-    width: 100px; 
-    height: 100px; 
-    background-color: Green; 
+#player1-login, #player2-login{
+  width: 40%;
 }
-
-.rotating { 
-    -webkit-transition: all 0.3s ;
-    -moz-transition: all 0.3s ;
-    -o-transition: all 0.3s ;
-    transition: all 0.3s ;
-}
-
-.rotated { 
-    transform:rotateY(360deg);
-    -webkit-transform:rotateY(360deg);
-    -moz-transform:rotateY(360deg); 
-    -o-transform:rotateY(360deg);
-}
-
-

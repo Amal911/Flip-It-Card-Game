@@ -42,16 +42,12 @@ const imageData = [
 ];
 let imagesId = [];
 const loadCards = (data, noOfCards) => {
-    //collect noOfCards from ImageTileType and store it in a variable tiles
     const tiles = data.slice(0, noOfCards);
-    tiles.forEach(tile => {
+    tiles.forEach((tile) => {
         imagesId.push(tile.id);
     });
-    //using spread store 2 tiles array in a single array
     const array = [...tiles, ...tiles];
-    //shuffle the array
     shuffleArray(array);
-    //using for loop add image to html file
     const imageTileContainer = document.getElementById("cards-container");
     for (let i = 0; i < noOfCards * 2; i++) {
         const tile = array[i];
@@ -70,19 +66,13 @@ const loadCards = (data, noOfCards) => {
 };
 loadCards(imageData, 8);
 let imageTiles = document.getElementsByClassName("image-cards");
-//change class name
-// console.log(imageTiles);
 for (let i = 0; i < imageTiles.length; i++) {
     imageTiles[i].addEventListener("click", function () {
-        // console.log(imageTiles[i].dataset.imgId);
-        // console.log(imageTiles[i]);
-        imageTiles[i].classList.toggle('rotated');
-        let image = imageTiles[i].getElementsByTagName('img');
+        imageTiles[i].classList.toggle("rotated");
+        let image = imageTiles[i].getElementsByTagName("img");
         let imgData = imageData.filter((img) => Number(imageTiles[i].dataset.imgId) == img.id);
-        image[0].src = (imgData[0].imageUrl);
-        // console.log(image);
+        image[0].src = imgData[0].imageUrl;
         selectedCards.push(imageTiles[i]);
-        // selectedCards.push(Number(imageTiles[i].getAttribute('data-imgId')))
         checkCards(selectedCards);
     });
 }
@@ -90,13 +80,8 @@ let selectedCards = [];
 function checkCards(selection) {
     if (selection.length === 2) {
         if (selection[0].dataset.imgId === selection[1].dataset.imgId) {
-            // console.log(selection[0]);
-            // console.log(imagesId);
-            // console.log(document.getElementById(selection[0].id));
-            // document.getElementById(selection[0].id)?.hidden
             document.getElementById(selection[0].id).style.visibility = "hidden";
             document.getElementById(selection[1].id).style.visibility = "hidden";
-            // document.getElementById(selection[0].toString())?.style.visibility("none");
             console.log("right choice");
             imagesId = imagesId.filter((id) => id != Number(selection[0].dataset.imgId));
             if (playerOne.playerStatus)
@@ -108,10 +93,10 @@ function checkCards(selection) {
             console.log("wrong choice");
             playerChange(playerOne, playerTwo); //function to change turn
             setTimeout(() => {
-                selection[0].classList.toggle('rotated');
-                selection[1].classList.toggle('rotated');
-                selection[0].getElementsByTagName('img')[0].src = "../assets/bg.png";
-                selection[1].getElementsByTagName('img')[0].src = "../assets/bg.png";
+                selection[0].classList.toggle("rotated");
+                selection[1].classList.toggle("rotated");
+                selection[0].getElementsByTagName("img")[0].src = "../assets/bg.png";
+                selection[1].getElementsByTagName("img")[0].src = "../assets/bg.png";
             }, 1000);
         }
         selectedCards = [];
@@ -183,4 +168,63 @@ const getWinner = (player1, player2) => {
     }
     return winnerList;
 };
+// login and signup functions
+let playeOneSignButton = document.getElementById("playeOneSignButton");
+playeOneSignButton.addEventListener("click", () => {
+    document.getElementById("loginForm-player1").style.display = "none";
+    document.getElementById("signupForm-player1").style.display = "block";
+});
+let playeTwoSignButton = document.getElementById("playeTwoSignButton");
+playeTwoSignButton.addEventListener("click", () => {
+    document.getElementById("loginForm-player2").style.display = "none";
+    document.getElementById("signupForm-player2").style.display = "block";
+});
+let playerOneLoginButton = document.getElementById("playerOneLoginButton");
+playerOneLoginButton.addEventListener("click", () => {
+    document.getElementById("loginForm-player1").style.display = "block";
+    document.getElementById("signupForm-player1").style.display = "none";
+});
+let playerTwoLoginButton = document.getElementById("playerTwoLoginButton");
+playerTwoLoginButton.addEventListener("click", () => {
+    document.getElementById("loginForm-player2").style.display = "block";
+    document.getElementById("signupForm-player2").style.display = "none";
+});
+let login = document.getElementsByClassName("login-form");
+for (let i = 0; i < login.length; i++) {
+    login[i].addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(login[i]);
+        let playerLogin = {
+            username: formData.get("username"),
+            password: formData.get("password"),
+            player: formData.get("player"),
+        };
+        console.log(playerLogin);
+        if (playerLogin.player == "PlayerOne") {
+            console.log("Player One", playerLogin);
+        }
+        else if (playerLogin.player == "PlayerTwo") {
+            console.log("Player Two", playerLogin);
+        }
+    });
+}
+let signup = document.getElementsByClassName("signup-form");
+for (let i = 0; i < signup.length; i++) {
+    signup[i].addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(signup[i]);
+        let playerSignup = {
+            name: formData.get("name"),
+            username: formData.get("username"),
+            password: formData.get("password"),
+            player: formData.get("player"),
+        };
+        if (playerSignup.player == "PlayerOne") {
+            console.log("Player One", playerSignup);
+        }
+        else {
+            console.log("Player Two", playerSignup);
+        }
+    });
+}
 export {};

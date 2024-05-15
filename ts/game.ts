@@ -78,12 +78,12 @@ const addImageEventListener = () => {
   for (let i = 0; i < imageTiles.length; i++) {
     imageTiles[i].addEventListener("click", function () {
       imageTiles[i].classList.toggle("rotated");
+      imageTiles[i].style.pointerEvents="none"
       let image = imageTiles[i]!.getElementsByTagName("img");
       let imgData = imageData.filter(
         (img) => Number(imageTiles[i].dataset.imgId) == img.id
       );
       image[0].src = imgData[0].imageUrl;
-
       selectedCards.push(imageTiles[i]);
 
       checkCards(selectedCards);
@@ -130,8 +130,10 @@ let selectedCards: HTMLDivElement[] = [];
 function checkCards(selection: HTMLDivElement[]) {
   if (selection.length === 2) {
     if (selection[0].dataset.imgId === selection[1].dataset.imgId) {
-      (document.getElementById(selection[0].id) as HTMLDivElement).style.visibility = "hidden";
-      (document.getElementById(selection[1].id)as HTMLDivElement).style.visibility = "hidden";
+      setTimeout(() => {
+        (document.getElementById(selection[0].id) as HTMLDivElement).style.visibility = "hidden";
+        (document.getElementById(selection[1].id)as HTMLDivElement).style.visibility = "hidden";
+      }, 1000);
 
       console.log("right choice");
       imagesId = imagesId.filter(
@@ -149,6 +151,8 @@ function checkCards(selection: HTMLDivElement[]) {
         selection[1]!.getElementsByTagName("img")[0].src = "../assets/bg.png";
       }, 1000);
     }
+    selection[0].style.pointerEvents="auto";
+    selection[1].style.pointerEvents="auto";
     selectedCards = [];
     if (imagesId.length == 0) getWinner(playerOne, playerTwo);
     

@@ -60,10 +60,10 @@ body {
 }
 
 .rotated { 
-    transform:rotateY(360deg);
-    -webkit-transform:rotateY(360deg);
-    -moz-transform:rotateY(360deg); 
-    -o-transform:rotateY(360deg);
+    transform:rotateY(180deg);
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg); 
+    -o-transform:rotateY(180deg);
 }
 
 

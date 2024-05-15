@@ -47,11 +47,24 @@ for (let i = 0; i < categoryBtns.length; i++) {
         categorySelection(categoryBtns[i].value);
     });
 }
+let playerOne = {
+    id: 1,
+    playerName: "Player 1",
+    playerStatus: true,
+    playerScore: 0,
+};
+let playerTwo = {
+    id: 2,
+    playerName: "Player 2",
+    playerStatus: false,
+    playerScore: 0,
+};
 const addImageEventListener = () => {
     let imageTiles = document.getElementsByClassName("image-cards");
     for (let i = 0; i < imageTiles.length; i++) {
         imageTiles[i].addEventListener("click", function () {
             imageTiles[i].classList.toggle("rotated");
+            imageTiles[i].style.pointerEvents = "none";
             let image = imageTiles[i].getElementsByTagName("img");
             let imgData = imageData.filter((img) => Number(imageTiles[i].dataset.imgId) == img.id);
             image[0].src = imgData[0].imageUrl;
@@ -91,8 +104,10 @@ let selectedCards = [];
 function checkCards(selection) {
     if (selection.length === 2) {
         if (selection[0].dataset.imgId === selection[1].dataset.imgId) {
-            document.getElementById(selection[0].id).style.visibility = "hidden";
-            document.getElementById(selection[1].id).style.visibility = "hidden";
+            setTimeout(() => {
+                document.getElementById(selection[0].id).style.visibility = "hidden";
+                document.getElementById(selection[1].id).style.visibility = "hidden";
+            }, 1000);
             console.log("right choice");
             imagesId = imagesId.filter((id) => id != Number(selection[0].dataset.imgId));
             if (playerOne.playerStatus)
@@ -110,23 +125,13 @@ function checkCards(selection) {
                 selection[1].getElementsByTagName("img")[0].src = "../assets/bg.png";
             }, 1000);
         }
+        selection[0].style.pointerEvents = "auto";
+        selection[1].style.pointerEvents = "auto";
         selectedCards = [];
         if (imagesId.length == 0)
             getWinner(playerOne, playerTwo);
     }
 }
-let playerOne = {
-    id: 1,
-    playerName: "Player 1",
-    playerStatus: true,
-    playerScore: 0,
-};
-let playerTwo = {
-    id: 2,
-    playerName: "Player 2",
-    playerStatus: false,
-    playerScore: 0,
-};
 // change player
 const playerChange = (playerOne, playerTwo) => {
     if (playerOne.playerStatus === true) {

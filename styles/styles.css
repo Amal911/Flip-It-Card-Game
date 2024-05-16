@@ -9,10 +9,12 @@ body {
     background-size: cover;
 }
 
-.img-fluid{
+#logo{
     width: 500px;
     height: auto;
-    z-index: 200;
+    z-index: 2;
+    position: relative;
+    margin-top: 10px;
 }
 
 #settings_icon{
@@ -26,6 +28,9 @@ body {
     width: 500px;
     height: auto;
     mix-blend-mode: screen;
+    z-index: 1;
+    position: absolute;
+    margin-top: 10px;
 }
 
 #instruction_icon{
@@ -68,10 +73,10 @@ body {
     top: 50%;
     left: 50%;
     height: 400px;
-    width: 400px;
-    transform: translate(-50%, -50%);
+    width: 440px;
+    transform: translate(-46%, -50%);
     z-index: 500;
-    border: 10px solid rgb(170, 172, 94);
+    border: 6px solid #f9d61b;
     border-radius: 5%;
 }
 
@@ -88,7 +93,7 @@ body {
     width: 180px;
     transform: translate(-50%, -50%);
     z-index: 500;
-    border: 10px solid rgb(170, 172, 94);
+    border: 6px solid #f9d61b;
     border-radius: 10%;
 }
 

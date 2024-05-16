@@ -42,16 +42,12 @@ const imageData = [
 ];
 let imagesId = [];
 const loadCards = (data, noOfCards) => {
-    //collect noOfCards from ImageTileType and store it in a variable tiles
     const tiles = data.slice(0, noOfCards);
     tiles.forEach(tile => {
         imagesId.push(tile.id);
     });
-    //using spread store 2 tiles array in a single array
     const array = [...tiles, ...tiles];
-    //shuffle the array
     shuffleArray(array);
-    //using for loop add image to html file
     const imageTileContainer = document.getElementById("cards-container");
     for (let i = 0; i < noOfCards * 2; i++) {
         const tile = array[i];
@@ -70,19 +66,13 @@ const loadCards = (data, noOfCards) => {
 };
 loadCards(imageData, 8);
 let imageTiles = document.getElementsByClassName("image-cards");
-//change class name
-// console.log(imageTiles);
 for (let i = 0; i < imageTiles.length; i++) {
     imageTiles[i].addEventListener("click", function () {
-        // console.log(imageTiles[i].dataset.imgId);
-        // console.log(imageTiles[i]);
         imageTiles[i].classList.toggle('rotated');
         let image = imageTiles[i].getElementsByTagName('img');
         let imgData = imageData.filter((img) => Number(imageTiles[i].dataset.imgId) == img.id);
         image[0].src = (imgData[0].imageUrl);
-        // console.log(image);
         selectedCards.push(imageTiles[i]);
-        // selectedCards.push(Number(imageTiles[i].getAttribute('data-imgId')))
         checkCards(selectedCards);
     });
 }
@@ -90,13 +80,8 @@ let selectedCards = [];
 function checkCards(selection) {
     if (selection.length === 2) {
         if (selection[0].dataset.imgId === selection[1].dataset.imgId) {
-            // console.log(selection[0]);
-            // console.log(imagesId);
-            // console.log(document.getElementById(selection[0].id));
-            // document.getElementById(selection[0].id)?.hidden
             document.getElementById(selection[0].id).style.visibility = "hidden";
             document.getElementById(selection[1].id).style.visibility = "hidden";
-            // document.getElementById(selection[0].toString())?.style.visibility("none");
             console.log("right choice");
             imagesId = imagesId.filter((id) => id != Number(selection[0].dataset.imgId));
             if (playerOne.playerStatus)

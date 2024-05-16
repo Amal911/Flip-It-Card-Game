@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Briem+Hand:wght@100..900&display=swap');
+
+body {
+    font-family: "Briem Hand", cursive;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    background-image: linear-gradient(185deg,rgba(0, 0, 0, 0.55),rgba(0, 0, 0, 0.55)), url('../assets/feedbackbg.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; 
+    width: 100%;
+}
+
+
+.feedbacks-container {
+    background-color: rgba(248, 249, 250, 0.9);
+    padding: 2rem;
+    border-radius: 8px;
+    border: solid rgb(235, 185, 34) 2px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    background-image: linear-gradient(185deg,rgba(0, 0, 0, 0.826),rgba(0, 0, 0, 0.813)), url('../assets/feedbackcontainerbg.jpg');
+    height: 500px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: rgb(235, 185, 34);
+    font-size: 2rem;
+    font-weight: bolder;
+}
+
+.form-label {
+    font-size: 1.25rem;
+    color: rgb(218, 174, 18); 
+}
+
+.form-control {
+    font-size: 1rem; 
+    padding: 0.75rem;
+    border: 2px solid #ccc; 
+    border-radius: 5px; 
+    opacity: 80%;
+    
+}
+
+
+textarea.form-control {
+    resize: vertical;
+    height: 65px;
+}
+
+.star-rating {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.star {
+    font-size: 3rem;
+    color: #ddd;
+    transition: color 0.3s;
+}
+
+.star.selected {
+    color: #ffc107;
+}
+
+.btn-primary {
+    font-size: 1.25rem; 
+    padding: 0.75rem 1.5rem; 
+}
+
+#feedbackRating {
+    display: none; 
+}

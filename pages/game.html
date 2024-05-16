@@ -13,6 +13,124 @@
     <link rel="stylesheet" href="../styles/game.css" />
   </head>
   <body>
+    <section id="login" class="row">
+      <div id="player1-login" class="col">
+        <div id="loginForm-player1" class="card container h-50 p-5 active">
+          <div id="heading"></div>
+          <form  class="login-form">
+            <div class="mb-3">
+              <label for="InputUsername" class="form-label">Username</label>
+              <input type="text" class="form-control" name="username" />
+            </div>
+            <div class="mb-3">
+              <label for="InputPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" name="password" />
+            </div>
+            <input type="text" value="PlayerOne" name="player" hidden />
+            <div class="submit-row">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <div class="signup">
+                <p>
+                  Don't Have an Account?
+                  <a class="toogleScreen" id="playeOneSignButton"> Sign Up </a>
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div
+          id="signupForm-player1"
+          class="card container p-5"
+          style="display: none"
+        >
+          <div class="heading">Sign Up</div>
+          <form id="sign-up-form" class="signup-form">
+            <div class="mb-3">
+              <label for="InputName" class="form-label">Name</label>
+              <input type="text" class="form-control" name="name" />
+            </div>
+            <div class="mb-3">
+              <label for="InputUsername" class="form-label">Username</label>
+              <input type="text" class="form-control" name="username" />
+            </div>
+            <div class="mb-3">
+              <label for="InputPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" name="password" />
+            </div>
+            <input type="text" value="PlayerOne" name="player" hidden />
+            <div class="submit-row">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <div class="signup">
+                <p>
+                  Already have an account?
+                  <a class="toogleScreen" id="playerOneLoginButton">Log In</a>
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div id="player2-login" class="col">
+        <div id="loginForm-player2" class="card container h-50 p-5 active">
+          <div id="heading"></div>
+          <form class="login-form">
+            <div class="mb-3">
+              <label for="InputUsername" class="form-label">Username</label>
+              <input type="text" class="form-control" name="username" />
+            </div>
+            <div class="mb-3">
+              <label for="InputPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" name="password" />
+            </div>
+            <input value="PlayerTwo" name="player" hidden />
+            <div class="submit-row">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <div class="signup">
+                <p>
+                  Don't Have an Account?
+                  <a class="toogleScreen" id="playeTwoSignButton"> Sign Up </a>
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div
+          id="signupForm-player2"
+          class="card container p-5"
+          style="display: none"
+        >
+          <div class="heading">Sign Up</div>
+          <form id="sign-up-form-player2" class="signup-form">
+            <div class="mb-3">
+              <label for="InputName" class="form-label">Name</label>
+              <input type="text" class="form-control" name="name" />
+            </div>
+            <div class="mb-3">
+              <label for="InputUsername" class="form-label">Username</label>
+              <input type="text" class="form-control" name="username" />
+            </div>
+            <div class="mb-3">
+              <label for="InputPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" name="password" />
+            </div>
+            <input type="text" value="PlayerTwo" name="player" hidden />
+            <div class="submit-row">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <div class="signup">
+                <p>
+                  Already have an account?
+                  <a class="toogleScreen" id="playerTwoLoginButton">Log In</a>
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
     <section id="category-section">
       <div
         class="d-flex flex-column justify-content-center align-items-center gap-5"

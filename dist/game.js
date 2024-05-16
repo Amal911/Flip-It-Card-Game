@@ -47,6 +47,18 @@ for (let i = 0; i < categoryBtns.length; i++) {
         categorySelection(categoryBtns[i].value);
     });
 }
+let playerOne = {
+    id: 1,
+    playerName: "Player 1",
+    playerStatus: true,
+    playerScore: 0,
+};
+let playerTwo = {
+    id: 2,
+    playerName: "Player 2",
+    playerStatus: false,
+    playerScore: 0,
+};
 const addImageEventListener = () => {
     let imageTiles = document.getElementsByClassName("image-cards");
     for (let i = 0; i < imageTiles.length; i++) {
@@ -115,18 +127,6 @@ function checkCards(selection) {
             getWinner(playerOne, playerTwo);
     }
 }
-let playerOne = {
-    id: 1,
-    playerName: "Player 1",
-    playerStatus: true,
-    playerScore: 0,
-};
-let playerTwo = {
-    id: 2,
-    playerName: "Player 2",
-    playerStatus: false,
-    playerScore: 0,
-};
 // change player
 const playerChange = (playerOne, playerTwo) => {
     if (playerOne.playerStatus === true) {

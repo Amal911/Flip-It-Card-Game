@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Briem+Hand:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 body {
     font-family: "Briem Hand", cursive;
@@ -14,6 +15,14 @@ body {
     width: 100%;
 }
 
+.main-feedback-container{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+
+}
 
 .feedbacks-container {
     background-color: rgba(248, 249, 250, 0.9);
@@ -80,4 +89,15 @@ textarea.form-control {
 
 #feedbackRating {
     display: none; 
+}
+
+.playbutton{
+    height: 60px;
+    width: 150px;
+    font-weight: 600;
+    font-size: 25px;
+    margin: 10px;
+    font-family: "Pacifico", cursive;
+    background-color: rgb(196, 191, 50);
+    border-radius: 20%;
 }

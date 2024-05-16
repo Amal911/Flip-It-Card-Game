@@ -160,6 +160,10 @@ const getWinner = (player1, player2) => {
         console.log(player1.playerName + " Wins with score " + player1.playerScore);
         const app = document.getElementById("winner-container");
         const winnerp = document.createElement("p");
+        winnerp.textContent = (player1.playerName + " Won ");
+        app === null || app === void 0 ? void 0 : app.appendChild(winnerp);
+        const scorep = document.createElement("p");
+        scorep.textContent = ("Score: " + player1.playerScore);
         winnerp.textContent = player1.playerName + " Won ";
         app === null || app === void 0 ? void 0 : app.appendChild(winnerp);
         const scorep = document.createElement("p");
@@ -171,6 +175,10 @@ const getWinner = (player1, player2) => {
         winnerList.push(player2);
         const app = document.getElementById("winner-container");
         const winnerp = document.createElement("p");
+        winnerp.textContent = (player2.playerName + " Won ");
+        app === null || app === void 0 ? void 0 : app.appendChild(winnerp);
+        const scorep = document.createElement("p");
+        scorep.textContent = ("Score: " + player2.playerScore);
         winnerp.textContent = player2.playerName + " Won ";
         app === null || app === void 0 ? void 0 : app.appendChild(winnerp);
         const scorep = document.createElement("p");

@@ -229,9 +229,12 @@ const getWinner = (player1: PlayerType, player2: PlayerType): PlayerType[] => {
     document.getElementById("game-section")!.style.display = "none";
     document.getElementById("winner-section")!.style.display = "block";
     const app = document.getElementById("winner-container");
-    const p = document.createElement("p");
-    p.textContent = (player1.playerName + " Won ");
-    app?.appendChild(p);
+    const winnerp = document.createElement("p");
+    winnerp.textContent = (player1.playerName + " Won ");
+    app?.appendChild(winnerp);
+    const scorep =document.createElement("p");
+    scorep.textContent =("Score: " + player1.playerScore)
+    app?.appendChild(scorep);
     
 
   } else if (player1.playerScore < player2.playerScore) {
@@ -241,9 +244,12 @@ const getWinner = (player1: PlayerType, player2: PlayerType): PlayerType[] => {
     document.getElementById("game-section")!.style.display = "none";
     document.getElementById("winner-section")!.style.display = "block";
     const app = document.getElementById("winner-container");
-    const p = document.createElement("p");
-    p.textContent = (player2.playerName + " Won ");
-    app?.appendChild(p);
+    const winnerp = document.createElement("p");
+    winnerp.textContent = (player2.playerName + " Won ");
+    app?.appendChild(winnerp);
+    const scorep =document.createElement("p");
+    scorep.textContent =("Score: " + player2.playerScore)
+    app?.appendChild(scorep);
 
   } else {
     console.log("Draw");

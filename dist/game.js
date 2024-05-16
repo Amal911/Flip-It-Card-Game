@@ -137,11 +137,19 @@ const playerChange = (playerOne, playerTwo) => {
     if (playerOne.playerStatus === true) {
         playerOne.playerStatus = false;
         playerTwo.playerStatus = true;
+        setTimeout(() => {
+            document.getElementById('player1').classList.toggle('player-active');
+            document.getElementById('player2').classList.toggle('player-active');
+        }, 1000);
         // clearInterval(playerInterval);
         // playerInterval;
         console.log("player Two turn");
     }
     else if (playerTwo.playerStatus === true) {
+        setTimeout(() => {
+            document.getElementById('player1').classList.toggle('player-active');
+            document.getElementById('player2').classList.toggle('player-active');
+        }, 1000);
         playerOne.playerStatus = true;
         playerTwo.playerStatus = false;
         console.log("player one turn");
@@ -157,6 +165,12 @@ const playerChange = (playerOne, playerTwo) => {
 // let score: Score = { player1: 0, player2: 0 }; // initializing
 const updateLivescore = (player) => {
     player.playerScore += 1;
+    if (player.id === 1) {
+        document.getElementById("player1-score").innerHTML = (player.playerScore).toString();
+    }
+    else {
+        document.getElementById("player2-score").innerHTML = (player.playerScore).toString();
+    }
     console.log(player.playerName, player.playerScore);
 };
 function shuffleArray(array) {

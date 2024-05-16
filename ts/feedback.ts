@@ -40,7 +40,6 @@ function getSelectedStarsCount() {
           stars[i].classList.add("selected");
         }
         feedbackRating.value = rating.toString();
-        console.log(feedbackRating.value);
       } else {
         console.error("Data value is null or undefined.");
       }

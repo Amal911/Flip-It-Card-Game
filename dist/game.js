@@ -97,18 +97,6 @@ const loadCards = (data, noOfCards) => {
     }
     addImageEventListener();
 };
-loadCards(imageData, 8);
-let imageTiles = document.getElementsByClassName("image-cards");
-for (let i = 0; i < imageTiles.length; i++) {
-    imageTiles[i].addEventListener("click", function () {
-        imageTiles[i].classList.toggle('rotated');
-        let image = imageTiles[i].getElementsByTagName('img');
-        let imgData = imageData.filter((img) => Number(imageTiles[i].dataset.imgId) == img.id);
-        image[0].src = (imgData[0].imageUrl);
-        selectedCards.push(imageTiles[i]);
-        checkCards(selectedCards);
-    });
-}
 console.log("asd");
 // loadCards(imageData, 8);
 // addImageEventListener();
@@ -116,8 +104,6 @@ let selectedCards = [];
 function checkCards(selection) {
     if (selection.length === 2) {
         if (selection[0].dataset.imgId === selection[1].dataset.imgId) {
-            document.getElementById(selection[0].id).style.visibility = "hidden";
-            document.getElementById(selection[1].id).style.visibility = "hidden";
             setTimeout(() => {
                 document.getElementById(selection[0].id).style.visibility = "hidden";
                 document.getElementById(selection[1].id).style.visibility = "hidden";

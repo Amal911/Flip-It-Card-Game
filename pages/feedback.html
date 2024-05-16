@@ -17,7 +17,7 @@
       <form id="feedbackFormId">
         <h2>Feedback</h2>
         <div class="mb-3">
-          <input id="feedbackRating" type="text" class="d-none" />
+          <input id="feedbackRating" type="text" name="rating" class="d-none" />
           <div class="star-rating">
             <span class="star" data-value="1">&#9733;</span>
             <span class="star" data-value="2">&#9733;</span>
@@ -33,6 +33,7 @@
           <label for="feedbackName" class="form-label">Name :</label>
           <input
             type="text"
+            name="name"
             class="form-control"
             id="feedbackName"
             placeholder="Enter your name"
@@ -44,6 +45,7 @@
             class="form-control"
             id="feedbackComments"
             rows="3"
+            name="comment"
             placeholder="Enter your comments"
           ></textarea>
         </div>

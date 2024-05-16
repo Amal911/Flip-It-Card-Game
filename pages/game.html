@@ -16,8 +16,8 @@
     <section id="login" class="row">
       <div id="player1-login" class="col">
         <div id="loginForm-player1" class="card container h-50 p-5 active">
-          <div id="heading">Player 1Login</div>
-          <form class="login-form">
+          <div id="heading">Player 1 Login</div>
+          <form class="login-form" id="player-one-login-form">
             <div class="mb-3">
               <label for="InputUsername" class="form-label">Username</label>
               <input type="text" class="form-control" name="username" />
@@ -28,7 +28,7 @@
             </div>
             <input type="text" value="PlayerOne" name="player" hidden />
             <div class="submit-row">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" id="loginbtn"class="btn btn-primary">Submit</button>
               <div class="signup">
                 <p>
                   Don't Have an Account?
@@ -47,22 +47,16 @@
           <div class="heading">Sign Up</div>
           <form id="sign-up-form" class="signup-form">
             <div class="mb-3">
-              <label for="InputUsername" class="form-label">Email</label>
-              <input type="email" class="form-control" name="email" />
+              <label for="InputUsername" class="form-label">UserName</label>
+              <input type="text" class="form-control" name="username" />
             </div>
             <div class="mb-3">
               <label for="InputPassword" class="form-label">Password</label>
               <input type="password" class="form-control" name="password" />
             </div>
             <div class="mb-3">
-              <label for="InputPassword" class="form-label">
-                Confirm Password</label
-              >
-              <input
-                type="password"
-                class="form-control"
-                name="confirmPassword"
-              />
+              <label for="InputPassword" class="form-label">Confirm Password</label>
+              <input type="password" class="form-control" name="confirmPassword"/>
             </div>
             <input type="text" value="PlayerOne" name="player" hidden />
             <div class="submit-row">
@@ -213,54 +207,5 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-  <script>
-    console.log("script working");
-    const firebaseConfig = {
-      apiKey: "AIzaSyAg-hNrn7Sk3CupBr95yk-l69wII0kpKYk",
-      authDomain: "flip-it-game-c1f44.firebaseapp.com",
-      databaseURL: "https://flip-it-game-c1f44-default-rtdb.firebaseio.com",
-      projectId: "flip-it-game-c1f44",
-      storageBucket: "flip-it-game-c1f44.appspot.com",
-      messagingSenderId: "154910747796",
-      appId: "1:154910747796:web:1f077fbcdaa9c1d2755881",
-      measurementId: "G-GD5NQTJ3Y8",
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const database = firebase.database();
-
-    const form = document.getElementById("sign-up-form");
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(form);
-      const email = formData.get("email");
-      const password = formData.get("password");
-      const win = "noOfWins";
-      console.log(email, password, win);
-
-      try {
-        const userCredential = await firebase
-          .auth()
-          .signInAnonymously()
-          .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-
-            console.log(errorCode, errorMessage);
-          });
-
-        const uid = userCredential.user.uid;
-
-        // Store the username and password in the database
-        await database.ref("users/").push({
-          email: email,
-          password: password,
-          win: win,
-        });
-      } catch (error) {
-        console.error("Error signing in anonymously: ", error);
-      }
-    });
-  </script>
+  <script  src="./fireBaseScript.js"></script>
 </html>

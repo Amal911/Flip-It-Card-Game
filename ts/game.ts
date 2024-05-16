@@ -1,5 +1,5 @@
 import {
-    ImageDataType,
+  ImageDataType,
   ImageTileType,
   PlayerLoginType,
   PlayerSigninType,
@@ -10,8 +10,7 @@ import { imageData } from "./imageData.js";
 document.getElementById("category-section")!.style.display = "none";
 document.getElementById("game-section")!.style.display = "none";
 document.getElementById("winner-section")!.style.display = "none";
-
-
+(document.getElementById("image-name") as HTMLParagraphElement).style.display='none';
 let imagesId: number[] = [];
 
 let categoryBtns: HTMLCollectionOf<HTMLButtonElement> =
@@ -21,7 +20,7 @@ let categoryBtns: HTMLCollectionOf<HTMLButtonElement> =
 
 const categorySelection = (categoryName: string): void => {
   console.log(categoryName);
-  let data:ImageTileType[] = imageData[categoryName as keyof ImageDataType ];
+  let data: ImageTileType[] = imageData[categoryName as keyof ImageDataType];
   loadCards(data, 8);
   document.getElementById("category-section")!.style.display = "none";
   document.getElementById("game-section")!.style.display = "flex";
@@ -46,7 +45,7 @@ let playerTwo: PlayerType = {
   playerScore: 0,
 };
 
-const addImageEventListener = (data:ImageTileType[]) => {
+const addImageEventListener = (data: ImageTileType[]) => {
   let imageTiles: HTMLCollectionOf<HTMLDivElement> =
     document.getElementsByClassName(
       "image-cards"
@@ -96,8 +95,10 @@ const loadCards = (data: ImageTileType[], noOfCards: number) => {
 
     imageTileContainer?.appendChild(imageElement);
   }
-  (document.getElementById('player1-name') as HTMLParagraphElement).innerHTML = playerOne.playerName;
-  (document.getElementById('player2-name') as HTMLParagraphElement).innerHTML = playerTwo.playerName;
+  (document.getElementById("player1-name") as HTMLParagraphElement).innerHTML =
+    playerOne.playerName;
+  (document.getElementById("player2-name") as HTMLParagraphElement).innerHTML =
+    playerTwo.playerName;
   addImageEventListener(data);
 };
 
@@ -105,7 +106,12 @@ let selectedCards: HTMLDivElement[] = [];
 function checkCards(selection: HTMLDivElement[]) {
   if (selection.length === 2) {
     if (selection[0].dataset.imgId === selection[1].dataset.imgId) {
-      (document.getElementById('image-name') as HTMLParagraphElement).innerHTML = selection[0].dataset.imgName as string;
+      (
+        document.getElementById("image-name") as HTMLParagraphElement
+      ).innerHTML = selection[0].dataset.imgName as string;
+      (
+        document.getElementById("image-name") as HTMLParagraphElement
+      ).style.display='block'
       setTimeout(() => {
         (
           document.getElementById(selection[0].id) as HTMLDivElement
@@ -113,6 +119,9 @@ function checkCards(selection: HTMLDivElement[]) {
         (
           document.getElementById(selection[1].id) as HTMLDivElement
         ).style.visibility = "hidden";
+        (
+          document.getElementById("image-name") as HTMLParagraphElement
+        ).style.display='none'
       }, 1000);
 
       console.log("right choice");
@@ -170,16 +179,6 @@ const playerChange = (playerOne: PlayerType, playerTwo: PlayerType): void => {
   }
 };
 
-// timer function
-// const playerInterval = setTimeout(playerChange, 1500);
-
-// type Score = {
-//   player1: number;
-//   player2: number;
-// };
-
-// let score: Score = { player1: 0, player2: 0 }; // initializing
-
 const updateLivescore = (player: PlayerType) => {
   player.playerScore += 1;
   if (player.id === 1) {
@@ -203,54 +202,32 @@ function shuffleArray(array: any[]) {
   }
 }
 
-// const getWinner = (player1: PlayerType, player2: PlayerType): PlayerType[] => {
-//   let winnerList: PlayerType[] = [];
-//   if (player1.playerScore > player2.playerScore) {
-//     winnerList.push(player1);
-//     console.log(player1.playerName + " Wins with score " + player1.playerScore);
-//   } else if (player1.playerScore < player2.playerScore) {
-//     console.log(player2.playerName + " Wins with score " + player2.playerScore);
-//     winnerList.push(player2);
-//   } else {
-//     console.log("Draw");
-
-//     winnerList.push(player1);
-//     winnerList.push(player2);
-//   }
-//   return winnerList;
-// };
-
-
 const getWinner = (player1: PlayerType, player2: PlayerType): PlayerType[] => {
   let winnerList: PlayerType[] = [];
+  document.getElementById("game-section")!.style.display = "none";
+  document.getElementById("winner-section")!.style.display = "block";
   if (player1.playerScore > player2.playerScore) {
     winnerList.push(player1);
     console.log(player1.playerName + " Wins with score " + player1.playerScore);
-    document.getElementById("game-section")!.style.display = "none";
-    document.getElementById("winner-section")!.style.display = "block";
+   
     const app = document.getElementById("winner-container");
     const winnerp = document.createElement("p");
-    winnerp.textContent = (player1.playerName + " Won ");
+    winnerp.textContent = player1.playerName + " Won ";
     app?.appendChild(winnerp);
-    const scorep =document.createElement("p");
-    scorep.textContent =("Score: " + player1.playerScore)
+    const scorep = document.createElement("p");
+    scorep.textContent = "Score: " + player1.playerScore;
     app?.appendChild(scorep);
-    
-
   } else if (player1.playerScore < player2.playerScore) {
     console.log(player2.playerName + " Wins with score " + player2.playerScore);
     winnerList.push(player2);
-    
-    document.getElementById("game-section")!.style.display = "none";
-    document.getElementById("winner-section")!.style.display = "block";
+
     const app = document.getElementById("winner-container");
     const winnerp = document.createElement("p");
-    winnerp.textContent = (player2.playerName + " Won ");
+    winnerp.textContent = player2.playerName + " Won ";
     app?.appendChild(winnerp);
-    const scorep =document.createElement("p");
-    scorep.textContent =("Score: " + player2.playerScore)
+    const scorep = document.createElement("p");
+    scorep.textContent = "Score: " + player2.playerScore;
     app?.appendChild(scorep);
-
   } else {
     console.log("Draw");
 
@@ -262,7 +239,6 @@ const getWinner = (player1: PlayerType, player2: PlayerType): PlayerType[] => {
     const p = document.createElement("p");
     p.textContent = "Draw";
     app?.appendChild(p);
-
   }
   return winnerList;
 };

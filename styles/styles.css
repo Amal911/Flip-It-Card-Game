@@ -14,7 +14,7 @@ body {
     height: auto;
     z-index: 2;
     position: relative;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 #settings_icon{
@@ -30,7 +30,7 @@ body {
     mix-blend-mode: screen;
     z-index: 1;
     position: absolute;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 #instruction_icon{
@@ -43,7 +43,7 @@ body {
 #play_icon{
     height: 80px;
     width: auto;
-    margin-right: 40px;
+    margin-right: 30px;
 }
 
 #instruction_content{

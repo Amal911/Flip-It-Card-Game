@@ -8,24 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const feedbackForm = document.getElementById("feedbackFormId");
-feedbackForm === null || feedbackForm === void 0 ? void 0 : feedbackForm.addEventListener("submit", (event) => __awaiter(void 0, void 0, void 0, function* () {
-    event.preventDefault();
-    const form = event.target;
-    let feedbackData = new FormData(form);
-    let feedback = () => ({
-        rating: Number(feedbackData.get("rating")),
-        name: feedbackData.get("name"),
-        comments: feedbackData.get("comment"),
-    });
-    console.log(feedback());
-}));
 let stars = Array.from(document.getElementsByClassName("star"));
 let feedbackRating = document.getElementById("feedbackRating");
 getSelectedStarsCount();
 function getSelectedStarsCount() {
     stars.forEach((star) => {
         star.addEventListener("click", function () {
+            validation.innerText = "";
             const dataValue = star.getAttribute("data-value");
             if (dataValue !== null) {
                 const rating = parseInt(dataValue);
@@ -46,3 +35,21 @@ function removeSelectedStars() {
         star.classList.remove("selected");
     });
 }
+const feedbackForm = document.getElementById("feedbackFormId");
+const validation = document.getElementById("validation");
+feedbackForm === null || feedbackForm === void 0 ? void 0 : feedbackForm.addEventListener("submit", (event) => __awaiter(void 0, void 0, void 0, function* () {
+    event.preventDefault();
+    const form = event.target;
+    let feedbackData = new FormData(form);
+    let feedback = {
+        rating: Number(feedbackData.get("rating")),
+        name: feedbackData.get("name"),
+        comments: feedbackData.get("comment"),
+    };
+    if (feedback.rating !== 0) {
+        console.log(feedback);
+    }
+    else {
+        validation.innerText = "Please rate us";
+    }
+}));

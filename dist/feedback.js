@@ -1,10 +1,30 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+const feedbackForm = document.getElementById("feedbackFormId");
+feedbackForm === null || feedbackForm === void 0 ? void 0 : feedbackForm.addEventListener("submit", (event) => __awaiter(void 0, void 0, void 0, function* () {
+    event.preventDefault();
+    const form = event.target;
+    let feedbackData = new FormData(form);
+    let feedback = () => ({
+        rating: Number(feedbackData.get("rating")),
+        name: feedbackData.get("name"),
+        comments: feedbackData.get("comment"),
+    });
+    console.log(feedback());
+}));
 let stars = Array.from(document.getElementsByClassName("star"));
 let feedbackRating = document.getElementById("feedbackRating");
-let selectedStarsCount = document.getElementById("selectedStars");
 getSelectedStarsCount();
 function getSelectedStarsCount() {
-    stars.forEach(star => {
+    stars.forEach((star) => {
         star.addEventListener("click", function () {
             const dataValue = star.getAttribute("data-value");
             if (dataValue !== null) {
@@ -14,8 +34,6 @@ function getSelectedStarsCount() {
                     stars[i].classList.add("selected");
                 }
                 feedbackRating.value = rating.toString();
-                console.log(feedbackRating.value);
-                //   selectedStarsCount.innerText = rating.toString();
             }
             else {
                 console.error("Data value is null or undefined.");
@@ -24,7 +42,7 @@ function getSelectedStarsCount() {
     });
 }
 function removeSelectedStars() {
-    stars.forEach(star => {
+    stars.forEach((star) => {
         star.classList.remove("selected");
     });
 }

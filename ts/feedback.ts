@@ -13,7 +13,6 @@ let feedbackRating = document.getElementById(
 getSelectedStarsCount();
 
 function getSelectedStarsCount() {
-  
   stars.forEach((star) => {
     star.addEventListener("click", function () {
       validation.innerText="";

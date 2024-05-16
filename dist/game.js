@@ -1,53 +1,14 @@
+import { imageData } from "./imageData.js";
 // document.getElementById("login")!.style.display = "block";
 document.getElementById("category-section").style.display = "none";
 document.getElementById("game-section").style.display = "none";
-const imageData = [
-    {
-        id: 1,
-        name: "Example 1",
-        imageUrl: "../assets/animals/cat.png",
-    },
-    {
-        id: 2,
-        name: "Example 2",
-        imageUrl: "../assets/animals/deer.png",
-    },
-    {
-        id: 3,
-        name: "Example 3",
-        imageUrl: "../assets/animals/dog.png",
-    },
-    {
-        id: 4,
-        name: "Example 4",
-        imageUrl: "../assets/animals/elephant.png",
-    },
-    {
-        id: 5,
-        name: "Example 4",
-        imageUrl: "../assets/animals/panda.png",
-    },
-    {
-        id: 6,
-        name: "Example 4",
-        imageUrl: "../assets/animals/rabbit.png",
-    },
-    {
-        id: 7,
-        name: "Example 4",
-        imageUrl: "../assets/animals/squirrel.png",
-    },
-    {
-        id: 8,
-        name: "Example 4",
-        imageUrl: "../assets/animals/tiger.png",
-    },
-];
+document.getElementById("winner-section").style.display = "none";
 let imagesId = [];
 let categoryBtns = document.getElementsByClassName("category-btn");
 const categorySelection = (categoryName) => {
     console.log(categoryName);
-    loadCards(imageData, 8);
+    let data = imageData[categoryName];
+    loadCards(data, 8);
     document.getElementById("category-section").style.display = "none";
     document.getElementById("game-section").style.display = "flex";
 };
@@ -69,14 +30,14 @@ let playerTwo = {
     playerStatus: false,
     playerScore: 0,
 };
-const addImageEventListener = () => {
+const addImageEventListener = (data) => {
     let imageTiles = document.getElementsByClassName("image-cards");
     for (let i = 0; i < imageTiles.length; i++) {
         imageTiles[i].addEventListener("click", function () {
             imageTiles[i].classList.toggle("rotated");
             imageTiles[i].style.pointerEvents = "none";
             let image = imageTiles[i].getElementsByTagName("img");
-            let imgData = imageData.filter((img) => Number(imageTiles[i].dataset.imgId) == img.id);
+            let imgData = data.filter((img) => Number(imageTiles[i].dataset.imgId) == img.id);
             image[0].src = imgData[0].imageUrl;
             selectedCards.push(imageTiles[i]);
             checkCards(selectedCards);
@@ -99,31 +60,22 @@ const loadCards = (data, noOfCards) => {
         imageElement.classList.add("rotating");
         imageElement.id = `img${i}`;
         imageElement.dataset.imgId = tile.id.toString();
+        imageElement.dataset.imgName = tile.name;
         imageElement.innerHTML = `
     <img src="../assets/bg.png" alt="">
     `;
         // <img src="${tile.imageUrl}" alt="">
         imageTileContainer === null || imageTileContainer === void 0 ? void 0 : imageTileContainer.appendChild(imageElement);
     }
-    addImageEventListener();
+    document.getElementById('player1-name').innerHTML = playerOne.playerName;
+    document.getElementById('player2-name').innerHTML = playerTwo.playerName;
+    addImageEventListener(data);
 };
-console.log("asd");
-let imageTiles = document.getElementsByClassName("image-cards");
-for (let i = 0; i < imageTiles.length; i++) {
-    imageTiles[i].addEventListener("click", function () {
-        imageTiles[i].classList.toggle("rotated");
-        let image = imageTiles[i].getElementsByTagName("img");
-        let imgData = imageData.filter((img) => Number(imageTiles[i].dataset.imgId) == img.id);
-        image[0].src = imgData[0].imageUrl;
-        selectedCards.push(imageTiles[i]);
-        checkCards(selectedCards);
-    });
-}
-// addImageEventListener();
 let selectedCards = [];
 function checkCards(selection) {
     if (selection.length === 2) {
         if (selection[0].dataset.imgId === selection[1].dataset.imgId) {
+            document.getElementById('image-name').innerHTML = selection[0].dataset.imgName;
             setTimeout(() => {
                 document.getElementById(selection[0].id).style.visibility = "hidden";
                 document.getElementById(selection[1].id).style.visibility = "hidden";
@@ -222,6 +174,7 @@ const getWinner = (player1, player2) => {
         winnerList.push(player1);
         console.log(player1.playerName + " Wins with score " + player1.playerScore);
         document.getElementById("game-section").style.display = "none";
+        document.getElementById("winner-section").style.display = "block";
         const app = document.getElementById("winner-container");
         const p = document.createElement("p");
         p.textContent = (player1.playerName + " Won ");
@@ -231,6 +184,7 @@ const getWinner = (player1, player2) => {
         console.log(player2.playerName + " Wins with score " + player2.playerScore);
         winnerList.push(player2);
         document.getElementById("game-section").style.display = "none";
+        document.getElementById("winner-section").style.display = "block";
         const app = document.getElementById("winner-container");
         const p = document.createElement("p");
         p.textContent = (player2.playerName + " Won ");
@@ -317,4 +271,3 @@ for (let i = 0; i < signup.length; i++) {
         }
     });
 }
-export {};

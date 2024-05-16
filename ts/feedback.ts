@@ -3,23 +3,6 @@ interface FeedbackType {
   name: string;
   comments: string;
 }
-
-const feedbackForm = document.getElementById("feedbackFormId");
-
-feedbackForm?.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const form = event.target as HTMLFormElement;
-  let feedbackData = new FormData(form);
-
-  let feedback = (): FeedbackType => ({
-    rating: Number(feedbackData.get("rating")) as number,
-    name: feedbackData.get("name") as string,
-    comments: feedbackData.get("comment") as string,
-  });
-
-  console.log(feedback());
-});
-
 let stars = Array.from(
   document.getElementsByClassName("star") as HTMLCollectionOf<HTMLElement>
 );
@@ -32,6 +15,7 @@ getSelectedStarsCount();
 function getSelectedStarsCount() {
   stars.forEach((star) => {
     star.addEventListener("click", function () {
+      validation.innerText="";
       const dataValue = star.getAttribute("data-value");
       if (dataValue !== null) {
         const rating = parseInt(dataValue);
@@ -52,3 +36,26 @@ function removeSelectedStars() {
     star.classList.remove("selected");
   });
 }
+
+const feedbackForm = document.getElementById("feedbackFormId");
+const validation= document.getElementById("validation") as HTMLParagraphElement;
+
+feedbackForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const form = event.target as HTMLFormElement;
+  let feedbackData = new FormData(form);
+
+  let feedback = {
+    rating: Number(feedbackData.get("rating")) as number,
+    name: feedbackData.get("name") as string,
+    comments: feedbackData.get("comment") as string,
+  }
+  if (feedback.rating !== 0) {
+      
+    console.log(feedback);
+  } else {
+    validation.innerText="Please rate us";
+    
+
+  }
+});

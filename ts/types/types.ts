@@ -24,4 +24,9 @@ interface PlayerSigninType {
   player: string;
 }
 
-export { ImageTileType, PlayerType, PlayerLoginType, PlayerSigninType };
+interface ImageDataType {
+  animals:ImageTileType[],
+  fruits:ImageTileType[],
+  flowers:ImageTileType[]
+}
+export { ImageTileType, PlayerType, PlayerLoginType, PlayerSigninType,ImageDataType };

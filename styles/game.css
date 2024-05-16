@@ -382,6 +382,10 @@ body {
 #category-container .btn3{
   background-color: rgb(123, 241, 139);
 }
+
+
+
+
 #winner-section {
   background-image: url("../assets/background-game.png");
   background-size: contain;
@@ -472,7 +476,7 @@ body {
 
 #winner-section .button-container{
   position: relative;
-  bottom: 10px;
+  bottom: 50px;
   left: 10px;
 }
 

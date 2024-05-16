@@ -3,6 +3,7 @@ import { imageData } from "./imageData.js";
 document.getElementById("category-section").style.display = "none";
 document.getElementById("game-section").style.display = "none";
 document.getElementById("winner-section").style.display = "none";
+document.getElementById("image-name").style.display = 'none';
 let imagesId = [];
 let categoryBtns = document.getElementsByClassName("category-btn");
 const categorySelection = (categoryName) => {
@@ -67,18 +68,22 @@ const loadCards = (data, noOfCards) => {
         // <img src="${tile.imageUrl}" alt="">
         imageTileContainer === null || imageTileContainer === void 0 ? void 0 : imageTileContainer.appendChild(imageElement);
     }
-    document.getElementById('player1-name').innerHTML = playerOne.playerName;
-    document.getElementById('player2-name').innerHTML = playerTwo.playerName;
+    document.getElementById("player1-name").innerHTML =
+        playerOne.playerName;
+    document.getElementById("player2-name").innerHTML =
+        playerTwo.playerName;
     addImageEventListener(data);
 };
 let selectedCards = [];
 function checkCards(selection) {
     if (selection.length === 2) {
         if (selection[0].dataset.imgId === selection[1].dataset.imgId) {
-            document.getElementById('image-name').innerHTML = selection[0].dataset.imgName;
+            document.getElementById("image-name").innerHTML = selection[0].dataset.imgName;
+            document.getElementById("image-name").style.display = 'block';
             setTimeout(() => {
                 document.getElementById(selection[0].id).style.visibility = "hidden";
                 document.getElementById(selection[1].id).style.visibility = "hidden";
+                document.getElementById("image-name").style.display = 'none';
             }, 1000);
             console.log("right choice");
             imagesId = imagesId.filter((id) => id != Number(selection[0].dataset.imgId));
@@ -128,13 +133,6 @@ const playerChange = (playerOne, playerTwo) => {
         // clearInterval(playerInterval);
     }
 };
-// timer function
-// const playerInterval = setTimeout(playerChange, 1500);
-// type Score = {
-//   player1: number;
-//   player2: number;
-// };
-// let score: Score = { player1: 0, player2: 0 }; // initializing
 const updateLivescore = (player) => {
     player.playerScore += 1;
     if (player.id === 1) {
@@ -153,47 +151,38 @@ function shuffleArray(array) {
         array[j] = temp;
     }
 }
-// const getWinner = (player1: PlayerType, player2: PlayerType): PlayerType[] => {
-//   let winnerList: PlayerType[] = [];
-//   if (player1.playerScore > player2.playerScore) {
-//     winnerList.push(player1);
-//     console.log(player1.playerName + " Wins with score " + player1.playerScore);
-//   } else if (player1.playerScore < player2.playerScore) {
-//     console.log(player2.playerName + " Wins with score " + player2.playerScore);
-//     winnerList.push(player2);
-//   } else {
-//     console.log("Draw");
-//     winnerList.push(player1);
-//     winnerList.push(player2);
-//   }
-//   return winnerList;
-// };
 const getWinner = (player1, player2) => {
     let winnerList = [];
+    document.getElementById("game-section").style.display = "none";
+    document.getElementById("winner-section").style.display = "block";
     if (player1.playerScore > player2.playerScore) {
         winnerList.push(player1);
         console.log(player1.playerName + " Wins with score " + player1.playerScore);
-        document.getElementById("game-section").style.display = "none";
-        document.getElementById("winner-section").style.display = "block";
         const app = document.getElementById("winner-container");
         const winnerp = document.createElement("p");
         winnerp.textContent = (player1.playerName + " Won ");
         app === null || app === void 0 ? void 0 : app.appendChild(winnerp);
         const scorep = document.createElement("p");
         scorep.textContent = ("Score: " + player1.playerScore);
+        winnerp.textContent = player1.playerName + " Won ";
+        app === null || app === void 0 ? void 0 : app.appendChild(winnerp);
+        const scorep = document.createElement("p");
+        scorep.textContent = "Score: " + player1.playerScore;
         app === null || app === void 0 ? void 0 : app.appendChild(scorep);
     }
     else if (player1.playerScore < player2.playerScore) {
         console.log(player2.playerName + " Wins with score " + player2.playerScore);
         winnerList.push(player2);
-        document.getElementById("game-section").style.display = "none";
-        document.getElementById("winner-section").style.display = "block";
         const app = document.getElementById("winner-container");
         const winnerp = document.createElement("p");
         winnerp.textContent = (player2.playerName + " Won ");
         app === null || app === void 0 ? void 0 : app.appendChild(winnerp);
         const scorep = document.createElement("p");
         scorep.textContent = ("Score: " + player2.playerScore);
+        winnerp.textContent = player2.playerName + " Won ";
+        app === null || app === void 0 ? void 0 : app.appendChild(winnerp);
+        const scorep = document.createElement("p");
+        scorep.textContent = "Score: " + player2.playerScore;
         app === null || app === void 0 ? void 0 : app.appendChild(scorep);
     }
     else {

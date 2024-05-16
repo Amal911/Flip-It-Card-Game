@@ -1,9 +1,24 @@
-body{
+
+
+
+body {
     background: fixed;
+    /* background-image: url("../assets/background-game.png"); */
+    /* padding: 20px; */
+    margin: 0;
+    padding: 0px;
+    /* background-size: contain; */
+  }
+  #game-section {
     background-image: url("../assets/background-game.png");
+    width: 100vw;
+    height: fit-content;
     background-size: contain;
-    padding: 20px;
-}
+    /* padding:10px ; */
+    display: flex;
+    align-items: center;
+  }
+  
 #cards-container{
     width: 45%;
     display: grid;
@@ -45,10 +60,20 @@ body{
 }
 
 .rotated { 
-    transform:rotateY(360deg);
-    -webkit-transform:rotateY(360deg);
-    -moz-transform:rotateY(360deg); 
-    -o-transform:rotateY(360deg);
+    transform:rotateY(180deg);
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg); 
+    -o-transform:rotateY(180deg);
 }
 
 
+
+#category-section{
+    height: 100vh;
+    background-image: url("../assets/background-game.png");
+    background-size: contain;
+}
+#category-container{
+    height: 100%;
+    
+}

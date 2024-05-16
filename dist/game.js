@@ -190,7 +190,7 @@ const getWinner = (player1, player2) => {
         document.getElementById("game-section").style.display = "none";
         const app = document.getElementById("winner-container");
         const p = document.createElement("p");
-        p.textContent = "Player One Won";
+        p.textContent = (player1.playerName + " Won ");
         app === null || app === void 0 ? void 0 : app.appendChild(p);
     }
     else if (player1.playerScore < player2.playerScore) {
@@ -199,7 +199,7 @@ const getWinner = (player1, player2) => {
         document.getElementById("game-section").style.display = "none";
         const app = document.getElementById("winner-container");
         const p = document.createElement("p");
-        p.textContent = "Player Two Won";
+        p.textContent = (player2.playerName + " Won ");
         app === null || app === void 0 ? void 0 : app.appendChild(p);
     }
     else {

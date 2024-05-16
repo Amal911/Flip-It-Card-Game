@@ -228,7 +228,7 @@ const getWinner = (player1: PlayerType, player2: PlayerType): PlayerType[] => {
     document.getElementById("game-section")!.style.display = "none";
     const app = document.getElementById("winner-container");
     const p = document.createElement("p");
-    p.textContent = "Player One Won";
+    p.textContent = (player1.playerName + " Won ");
     app?.appendChild(p);
     
 
@@ -239,7 +239,7 @@ const getWinner = (player1: PlayerType, player2: PlayerType): PlayerType[] => {
     document.getElementById("game-section")!.style.display = "none";
     const app = document.getElementById("winner-container");
     const p = document.createElement("p");
-    p.textContent = "Player Two Won";
+    p.textContent = (player2.playerName + " Won ");
     app?.appendChild(p);
 
   } else {

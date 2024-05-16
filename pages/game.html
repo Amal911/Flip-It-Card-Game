@@ -16,8 +16,8 @@
     <section id="login" class="row">
       <div id="player1-login" class="col">
         <div id="loginForm-player1" class="card container h-50 p-5 active">
-          <div id="heading"></div>
-          <form  class="login-form">
+          <div id="heading">Player 1Login</div>
+          <form class="login-form">
             <div class="mb-3">
               <label for="InputUsername" class="form-label">Username</label>
               <input type="text" class="form-control" name="username" />
@@ -32,7 +32,7 @@
               <div class="signup">
                 <p>
                   Don't Have an Account?
-                  <a class="toogleScreen" id="playeOneSignButton"> Sign Up </a>
+                  <a class="toogleScreen" id="playerOneSignButton"> Sign Up </a>
                 </p>
               </div>
             </div>
@@ -47,16 +47,22 @@
           <div class="heading">Sign Up</div>
           <form id="sign-up-form" class="signup-form">
             <div class="mb-3">
-              <label for="InputName" class="form-label">Name</label>
-              <input type="text" class="form-control" name="name" />
-            </div>
-            <div class="mb-3">
-              <label for="InputUsername" class="form-label">Username</label>
-              <input type="text" class="form-control" name="username" />
+              <label for="InputUsername" class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" />
             </div>
             <div class="mb-3">
               <label for="InputPassword" class="form-label">Password</label>
               <input type="password" class="form-control" name="password" />
+            </div>
+            <div class="mb-3">
+              <label for="InputPassword" class="form-label">
+                Confirm Password</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                name="confirmPassword"
+              />
             </div>
             <input type="text" value="PlayerOne" name="player" hidden />
             <div class="submit-row">
@@ -74,7 +80,7 @@
 
       <div id="player2-login" class="col">
         <div id="loginForm-player2" class="card container h-50 p-5 active">
-          <div id="heading"></div>
+          <div id="heading">Player 2Login</div>
           <form class="login-form">
             <div class="mb-3">
               <label for="InputUsername" class="form-label">Username</label>
@@ -90,7 +96,7 @@
               <div class="signup">
                 <p>
                   Don't Have an Account?
-                  <a class="toogleScreen" id="playeTwoSignButton"> Sign Up </a>
+                  <a class="toogleScreen" id="playerTwoSignButton"> Sign Up </a>
                 </p>
               </div>
             </div>
@@ -105,10 +111,6 @@
           <div class="heading">Sign Up</div>
           <form id="sign-up-form-player2" class="signup-form">
             <div class="mb-3">
-              <label for="InputName" class="form-label">Name</label>
-              <input type="text" class="form-control" name="name" />
-            </div>
-            <div class="mb-3">
               <label for="InputUsername" class="form-label">Username</label>
               <input type="text" class="form-control" name="username" />
             </div>
@@ -116,7 +118,17 @@
               <label for="InputPassword" class="form-label">Password</label>
               <input type="password" class="form-control" name="password" />
             </div>
-            <input type="text" value="PlayerTwo" name="player" hidden />
+            <div class="mb-3">
+              <label for="InputPassword" class="form-label">
+                Confirm Password</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                name="confirmPassword"
+              />
+            </div>
+            <input type="text" value="PlayerOne" name="player" hidden />
             <div class="submit-row">
               <button type="submit" class="btn btn-primary">Submit</button>
               <div class="signup">
@@ -155,13 +167,20 @@
       <div class="container" id="game-container">
         <div class="card d-flex flex-column" id="live-score-card">
           <h3>Score Card</h3>
-          <div class="player d-flex flex-row text-center player-active" id="player1">
+          <div
+            class="player d-flex flex-row text-center player-active"
+            id="player1"
+          >
             <div class="player-icon">
               <img src="../assets/user-icon-1.png" alt="" />
             </div>
             <div class="player-name-score d-flex flex-column">
-              <div class="player-name player-styles"><p id="player1-name">Jisna</p></div>
-              <div class="player-score player-styles"><p id="player1-score">0</p></div>
+              <div class="player-name player-styles">
+                <p id="player1-name">Jisna</p>
+              </div>
+              <div class="player-score player-styles">
+                <p id="player1-score">0</p>
+              </div>
             </div>
           </div>
           <div class="player d-flex flex-row text-center" id="player2">
@@ -169,8 +188,12 @@
               <img src="../assets/user-icon-2.png" alt="" />
             </div>
             <div class="player-name-score d-flex flex-column">
-              <div class="player-name player-styles"><p id="player2-name">Gopika</p></div>
-              <div class="player-score player-styles"><p id="player2-score">0</p></div>
+              <div class="player-name player-styles">
+                <p id="player2-name">Gopika</p>
+              </div>
+              <div class="player-score player-styles">
+                <p id="player2-score">0</p>
+              </div>
             </div>
           </div>
         </div>
@@ -186,4 +209,58 @@
     ></script>
     <script type="module" src="../dist/game.js"></script>
   </body>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script>
+    console.log("script working");
+    const firebaseConfig = {
+      apiKey: "AIzaSyAg-hNrn7Sk3CupBr95yk-l69wII0kpKYk",
+      authDomain: "flip-it-game-c1f44.firebaseapp.com",
+      databaseURL: "https://flip-it-game-c1f44-default-rtdb.firebaseio.com",
+      projectId: "flip-it-game-c1f44",
+      storageBucket: "flip-it-game-c1f44.appspot.com",
+      messagingSenderId: "154910747796",
+      appId: "1:154910747796:web:1f077fbcdaa9c1d2755881",
+      measurementId: "G-GD5NQTJ3Y8",
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    const form = document.getElementById("sign-up-form");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const email = formData.get("email");
+      const password = formData.get("password");
+      const win = "noOfWins";
+      console.log(email, password, win);
+
+      try {
+        const userCredential = await firebase
+          .auth()
+          .signInAnonymously()
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+
+            console.log(errorCode, errorMessage);
+          });
+
+        const uid = userCredential.user.uid;
+
+        // Store the username and password in the database
+        await database.ref("users/").push({
+          email: email,
+          password: password,
+          win: win,
+        });
+      } catch (error) {
+        console.error("Error signing in anonymously: ", error);
+      }
+    });
+  </script>
 </html>

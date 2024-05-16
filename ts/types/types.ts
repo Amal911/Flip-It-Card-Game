@@ -18,9 +18,9 @@ interface PlayerLoginType {
 }
 
 interface PlayerSigninType {
-  name: string;
   username: string;
   password: string;
+  confirmPassword: string;
   player: string;
 }
 

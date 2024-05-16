@@ -97,6 +97,7 @@ const loadCards = (data, noOfCards) => {
     }
     addImageEventListener();
 };
+// console.log("asd");
 loadCards(imageData, 8);
 let imageTiles = document.getElementsByClassName("image-cards");
 for (let i = 0; i < imageTiles.length; i++) {
@@ -109,15 +110,12 @@ for (let i = 0; i < imageTiles.length; i++) {
         checkCards(selectedCards);
     });
 }
-console.log("asd");
 // loadCards(imageData, 8);
 // addImageEventListener();
 let selectedCards = [];
 function checkCards(selection) {
     if (selection.length === 2) {
         if (selection[0].dataset.imgId === selection[1].dataset.imgId) {
-            document.getElementById(selection[0].id).style.visibility = "hidden";
-            document.getElementById(selection[1].id).style.visibility = "hidden";
             setTimeout(() => {
                 document.getElementById(selection[0].id).style.visibility = "hidden";
                 document.getElementById(selection[1].id).style.visibility = "hidden";
@@ -213,13 +211,13 @@ const getWinner = (player1, player2) => {
     return winnerList;
 };
 // login and signup functions
-let playeOneSignButton = document.getElementById("playeOneSignButton");
-playeOneSignButton.addEventListener("click", () => {
+let playerOneSignButton = document.getElementById("playerOneSignButton");
+playerOneSignButton.addEventListener("click", () => {
     document.getElementById("loginForm-player1").style.display = "none";
     document.getElementById("signupForm-player1").style.display = "block";
 });
-let playeTwoSignButton = document.getElementById("playeTwoSignButton");
-playeTwoSignButton.addEventListener("click", () => {
+let playerTwoSignButton = document.getElementById("playerTwoSignButton");
+playerTwoSignButton.addEventListener("click", () => {
     document.getElementById("loginForm-player2").style.display = "none";
     document.getElementById("signupForm-player2").style.display = "block";
 });
@@ -252,23 +250,27 @@ for (let i = 0; i < login.length; i++) {
         }
     });
 }
-let signup = document.getElementsByClassName("signup-form");
-for (let i = 0; i < signup.length; i++) {
-    signup[i].addEventListener("submit", (e) => {
-        e.preventDefault();
-        const formData = new FormData(signup[i]);
-        let playerSignup = {
-            name: formData.get("name"),
-            username: formData.get("username"),
-            password: formData.get("password"),
-            player: formData.get("player"),
-        };
-        if (playerSignup.player == "PlayerOne") {
-            console.log("Player One", playerSignup);
-        }
-        else {
-            console.log("Player Two", playerSignup);
-        }
-    });
-}
+// let signup = document.getElementsByClassName("signup-form") as HTMLCollectionOf<HTMLFormElement>;
+// for(let i=0;i<signup.length;i++){
+//   signup[i].addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     const formData = new FormData(signup[i]);
+//     let playerSignup: PlayerSigninType = {      
+//       username: formData.get("username") as string,
+//       password: formData.get("password") as string,
+//       confirmPassword: formData.get("confirmPassword") as string,
+//       player: formData.get("player") as string,
+//     };
+//     if (playerSignup.player == "PlayerOne") {
+//       console.log("Player One", playerSignup);
+//     } else {
+//       console.log("Player Two", playerSignup);
+//     }
+//   });
+// }
+const categorySelection = (categoryName) => {
+    console.log(categoryName);
+    loadCards(imageData, 8);
+    document.getElementById("category-section").style.display = "none";
+};
 export {};

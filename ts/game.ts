@@ -126,7 +126,7 @@ const loadCards = (data: ImageTileType[], noOfCards: number) => {
   }
   addImageEventListener();
 };
-console.log("asd");
+// console.log("asd");
 
 loadCards(imageData, 8);
 
@@ -259,10 +259,10 @@ const getWinner = (player1: PlayerType, player2: PlayerType): PlayerType[] => {
 };
 
 // login and signup functions
-let playeOneSignButton = document.getElementById(
-  "playeOneSignButton"
+let playerOneSignButton = document.getElementById(
+  "playerOneSignButton"
 ) as HTMLButtonElement;
-playeOneSignButton.addEventListener("click", () => {
+playerOneSignButton.addEventListener("click", () => {
   (
     document.getElementById("loginForm-player1") as HTMLDivElement
   ).style.display = "none";
@@ -270,10 +270,10 @@ playeOneSignButton.addEventListener("click", () => {
     document.getElementById("signupForm-player1") as HTMLDivElement
   ).style.display = "block";
 });
-let playeTwoSignButton = document.getElementById(
-  "playeTwoSignButton"
+let playerTwoSignButton = document.getElementById(
+  "playerTwoSignButton"
 ) as HTMLButtonElement;
-playeTwoSignButton.addEventListener("click", () => {
+playerTwoSignButton.addEventListener("click", () => {
   (
     document.getElementById("loginForm-player2") as HTMLDivElement
   ).style.display = "none";
@@ -329,26 +329,26 @@ for(let i=0;i<login.length;i++){
   });
 }
 
-let signup = document.getElementsByClassName("signup-form") as HTMLCollectionOf<HTMLFormElement>;
-for(let i=0;i<signup.length;i++){
+// let signup = document.getElementsByClassName("signup-form") as HTMLCollectionOf<HTMLFormElement>;
+// for(let i=0;i<signup.length;i++){
 
-  signup[i].addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(signup[i]);
-    let playerSignup: PlayerSigninType = {
-      name: formData.get("name") as string,
-      username: formData.get("username") as string,
-      password: formData.get("password") as string,
-      player: formData.get("player") as string,
-    };
-    if (playerSignup.player == "PlayerOne") {
-      console.log("Player One", playerSignup);
-    } else {
-      console.log("Player Two", playerSignup);
-    }
-  });
+//   signup[i].addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     const formData = new FormData(signup[i]);
+//     let playerSignup: PlayerSigninType = {      
+//       username: formData.get("username") as string,
+//       password: formData.get("password") as string,
+//       confirmPassword: formData.get("confirmPassword") as string,
+//       player: formData.get("player") as string,
+//     };
+//     if (playerSignup.player == "PlayerOne") {
+//       console.log("Player One", playerSignup);
+//     } else {
+//       console.log("Player Two", playerSignup);
+//     }
+//   });
   
-}
+// }
 const categorySelection = (categoryName: string): void => {
   console.log(categoryName);
 

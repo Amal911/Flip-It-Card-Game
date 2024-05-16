@@ -64,7 +64,7 @@ const categorySelection = (categoryName: string): void => {
 
   loadCards(imageData, 8);
   document.getElementById("category-section")!.style.display = "none";
-  document.getElementById("game-section")!.style.display = "block";
+  document.getElementById("game-section")!.style.display = "flex";
 };
 for (let i = 0; i < categoryBtns.length; i++) {
   categoryBtns[i].addEventListener("click", () => {

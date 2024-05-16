@@ -213,3 +213,34 @@ body {
     height: 100%;
     
 }
+
+#winner-section {
+    background-image: url("../assets/background-game.png");
+    
+    height: 100vh;
+    background-size: contain;
+    background-position: 50%;
+    
+    align-items: center;
+    justify-content: center;
+   
+    
+    
+
+  }
+
+  #winner-container{
+   
+    /* height: 100%; */
+   background-repeat:no-repeat;
+    background-size: cover;
+    text-align: center;
+    font-size:3.0vw;
+    font-weight: 600;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #000000;
+    vertical-align: middle;
+    line-height:34rem;
+    
+    
+}

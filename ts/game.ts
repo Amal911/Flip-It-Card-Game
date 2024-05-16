@@ -35,13 +35,13 @@ for (let i = 0; i < categoryBtns.length; i++) {
 
 let playerOne: PlayerType = {
   id: 1,
-  playerName: "Player 1",
+  playerName: localStorage.getItem('PlayerOne') as string,
   playerStatus: true,
   playerScore: 0,
 };
 let playerTwo: PlayerType = {
   id: 2,
-  playerName: "Player 2",
+  playerName: localStorage.getItem('PlayerTwo') as string,
   playerStatus: false,
   playerScore: 0,
 };
@@ -315,57 +315,57 @@ playerTwoLoginButton.addEventListener("click", () => {
   ).style.display = "none";
 });
 
-let playersJoined = {
-  playerOne: false,
-  playerTwo: false,
-};
+// let playersJoined = {
+//   playerOne: false,
+//   playerTwo: false,
+// };
 
-let login = document.getElementsByClassName(
-  "login-form"
-) as HTMLCollectionOf<HTMLFormElement>;
-for (let i = 0; i < login.length; i++) {
-  login[i].addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(login[i]);
-    let playerLogin: PlayerLoginType = {
-      username: formData.get("username") as string,
-      password: formData.get("password") as string,
-      player: formData.get("player") as string,
-    };
+// let login = document.getElementsByClassName(
+//   "login-form"
+// ) as HTMLCollectionOf<HTMLFormElement>;
+// for (let i = 0; i < login.length; i++) {
+//   login[i].addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     const formData = new FormData(login[i]);
+//     let playerLogin: PlayerLoginType = {
+//       username: formData.get("username") as string,
+//       password: formData.get("password") as string,
+//       player: formData.get("player") as string,
+//     };
 
-    console.log(playerLogin);
+//     console.log(playerLogin);
 
-    if (playerLogin.player == "PlayerOne") {
-      playersJoined.playerOne = true;
-      console.log("Player One", playerLogin);
-    } else if (playerLogin.player == "PlayerTwo") {
-      playersJoined.playerTwo = true;
-      console.log("Player Two", playerLogin);
-    }
-    if (playersJoined.playerOne && playersJoined.playerTwo) {
-      document.getElementById("login")!.style.display = "none";
-      document.getElementById("category-section")!.style.display = "block";
-    }
-  });
-}
+//     if (playerLogin.player == "PlayerOne") {
+//       playersJoined.playerOne = true;
+//       console.log("Player One", playerLogin);
+//     } else if (playerLogin.player == "PlayerTwo") {
+//       playersJoined.playerTwo = true;
+//       console.log("Player Two", playerLogin);
+//     }
+//     if (playersJoined.playerOne && playersJoined.playerTwo) {
+//       document.getElementById("login")!.style.display = "none";
+//       document.getElementById("category-section")!.style.display = "block";
+//     }
+//   });
+// }
 
-let signup = document.getElementsByClassName(
-  "signup-form"
-) as HTMLCollectionOf<HTMLFormElement>;
-for (let i = 0; i < signup.length; i++) {
-  signup[i].addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(signup[i]);
-    let playerSignup: PlayerSigninType = {
-      name: formData.get("name") as string,
-      username: formData.get("username") as string,
-      password: formData.get("password") as string,
-      player: formData.get("player") as string,
-    };
-    if (playerSignup.player == "PlayerOne") {
-      console.log("Player One", playerSignup);
-    } else {
-      console.log("Player Two", playerSignup);
-    }
-  });
-}
+// let signup = document.getElementsByClassName(
+//   "signup-form"
+// ) as HTMLCollectionOf<HTMLFormElement>;
+// for (let i = 0; i < signup.length; i++) {
+//   signup[i].addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     const formData = new FormData(signup[i]);
+//     let playerSignup: PlayerSigninType = {
+//       name: formData.get("name") as string,
+//       username: formData.get("username") as string,
+//       password: formData.get("password") as string,
+//       player: formData.get("player") as string,
+//     };
+//     if (playerSignup.player == "PlayerOne") {
+//       console.log("Player One", playerSignup);
+//     } else {
+//       console.log("Player Two", playerSignup);
+//     }
+//   });
+// }

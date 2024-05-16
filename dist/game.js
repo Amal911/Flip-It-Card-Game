@@ -20,13 +20,13 @@ for (let i = 0; i < categoryBtns.length; i++) {
 }
 let playerOne = {
     id: 1,
-    playerName: "Player 1",
+    playerName: localStorage.getItem('PlayerOne'),
     playerStatus: true,
     playerScore: 0,
 };
 let playerTwo = {
     id: 2,
-    playerName: "Player 2",
+    playerName: localStorage.getItem('PlayerTwo'),
     playerStatus: false,
     playerScore: 0,
 };
@@ -176,9 +176,12 @@ const getWinner = (player1, player2) => {
         document.getElementById("game-section").style.display = "none";
         document.getElementById("winner-section").style.display = "block";
         const app = document.getElementById("winner-container");
-        const p = document.createElement("p");
-        p.textContent = (player1.playerName + " Won ");
-        app === null || app === void 0 ? void 0 : app.appendChild(p);
+        const winnerp = document.createElement("p");
+        winnerp.textContent = (player1.playerName + " Won ");
+        app === null || app === void 0 ? void 0 : app.appendChild(winnerp);
+        const scorep = document.createElement("p");
+        scorep.textContent = ("Score: " + player1.playerScore);
+        app === null || app === void 0 ? void 0 : app.appendChild(scorep);
     }
     else if (player1.playerScore < player2.playerScore) {
         console.log(player2.playerName + " Wins with score " + player2.playerScore);
@@ -186,9 +189,12 @@ const getWinner = (player1, player2) => {
         document.getElementById("game-section").style.display = "none";
         document.getElementById("winner-section").style.display = "block";
         const app = document.getElementById("winner-container");
-        const p = document.createElement("p");
-        p.textContent = (player2.playerName + " Won ");
-        app === null || app === void 0 ? void 0 : app.appendChild(p);
+        const winnerp = document.createElement("p");
+        winnerp.textContent = (player2.playerName + " Won ");
+        app === null || app === void 0 ? void 0 : app.appendChild(winnerp);
+        const scorep = document.createElement("p");
+        scorep.textContent = ("Score: " + player2.playerScore);
+        app === null || app === void 0 ? void 0 : app.appendChild(scorep);
     }
     else {
         console.log("Draw");
@@ -223,51 +229,53 @@ playerTwoLoginButton.addEventListener("click", () => {
     document.getElementById("loginForm-player2").style.display = "block";
     document.getElementById("signupForm-player2").style.display = "none";
 });
-let playersJoined = {
-    playerOne: false,
-    playerTwo: false,
-};
-let login = document.getElementsByClassName("login-form");
-for (let i = 0; i < login.length; i++) {
-    login[i].addEventListener("submit", (e) => {
-        e.preventDefault();
-        const formData = new FormData(login[i]);
-        let playerLogin = {
-            username: formData.get("username"),
-            password: formData.get("password"),
-            player: formData.get("player"),
-        };
-        console.log(playerLogin);
-        if (playerLogin.player == "PlayerOne") {
-            playersJoined.playerOne = true;
-            console.log("Player One", playerLogin);
-        }
-        else if (playerLogin.player == "PlayerTwo") {
-            playersJoined.playerTwo = true;
-            console.log("Player Two", playerLogin);
-        }
-        if (playersJoined.playerOne && playersJoined.playerTwo) {
-            document.getElementById("login").style.display = "none";
-            document.getElementById("category-section").style.display = "block";
-        }
-    });
-}
-let signup = document.getElementsByClassName("signup-form");
-for (let i = 0; i < signup.length; i++) {
-    signup[i].addEventListener("submit", (e) => {
-        e.preventDefault();
-        const formData = new FormData(signup[i]);
-        let playerSignup = {
-            name: formData.get("name"),
-            username: formData.get("username"),
-            password: formData.get("password"),
-            player: formData.get("player"),
-        };
-        if (playerSignup.player == "PlayerOne") {
-            console.log("Player One", playerSignup);
-        }
-        else {
-            console.log("Player Two", playerSignup);
-        }
-    });
-}
+// let playersJoined = {
+//   playerOne: false,
+//   playerTwo: false,
+// };
+// let login = document.getElementsByClassName(
+//   "login-form"
+// ) as HTMLCollectionOf<HTMLFormElement>;
+// for (let i = 0; i < login.length; i++) {
+//   login[i].addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     const formData = new FormData(login[i]);
+//     let playerLogin: PlayerLoginType = {
+//       username: formData.get("username") as string,
+//       password: formData.get("password") as string,
+//       player: formData.get("player") as string,
+//     };
+//     console.log(playerLogin);
+//     if (playerLogin.player == "PlayerOne") {
+//       playersJoined.playerOne = true;
+//       console.log("Player One", playerLogin);
+//     } else if (playerLogin.player == "PlayerTwo") {
+//       playersJoined.playerTwo = true;
+//       console.log("Player Two", playerLogin);
+//     }
+//     if (playersJoined.playerOne && playersJoined.playerTwo) {
+//       document.getElementById("login")!.style.display = "none";
+//       document.getElementById("category-section")!.style.display = "block";
+//     }
+//   });
+// }
+// let signup = document.getElementsByClassName(
+//   "signup-form"
+// ) as HTMLCollectionOf<HTMLFormElement>;
+// for (let i = 0; i < signup.length; i++) {
+//   signup[i].addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     const formData = new FormData(signup[i]);
+//     let playerSignup: PlayerSigninType = {
+//       name: formData.get("name") as string,
+//       username: formData.get("username") as string,
+//       password: formData.get("password") as string,
+//       player: formData.get("player") as string,
+//     };
+//     if (playerSignup.player == "PlayerOne") {
+//       console.log("Player One", playerSignup);
+//     } else {
+//       console.log("Player Two", playerSignup);
+//     }
+//   });
+// }

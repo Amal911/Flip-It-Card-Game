@@ -1,3 +1,6 @@
+// document.getElementById("login")!.style.display = "block";
+document.getElementById("category-section").style.display = "none";
+document.getElementById("game-section").style.display = "none";
 const imageData = [
     {
         id: 1,
@@ -42,8 +45,15 @@ const imageData = [
 ];
 let imagesId = [];
 let categoryBtns = document.getElementsByClassName("category-btn");
+const categorySelection = (categoryName) => {
+    console.log(categoryName);
+    loadCards(imageData, 8);
+    document.getElementById("category-section").style.display = "none";
+    document.getElementById("game-section").style.display = "block";
+};
 for (let i = 0; i < categoryBtns.length; i++) {
     categoryBtns[i].addEventListener("click", () => {
+        console.log(categoryBtns[i].value);
         categorySelection(categoryBtns[i].value);
     });
 }
@@ -97,7 +107,7 @@ const loadCards = (data, noOfCards) => {
     }
     addImageEventListener();
 };
-loadCards(imageData, 8);
+console.log("asd");
 let imageTiles = document.getElementsByClassName("image-cards");
 for (let i = 0; i < imageTiles.length; i++) {
     imageTiles[i].addEventListener("click", function () {
@@ -109,15 +119,11 @@ for (let i = 0; i < imageTiles.length; i++) {
         checkCards(selectedCards);
     });
 }
-console.log("asd");
-// loadCards(imageData, 8);
 // addImageEventListener();
 let selectedCards = [];
 function checkCards(selection) {
     if (selection.length === 2) {
         if (selection[0].dataset.imgId === selection[1].dataset.imgId) {
-            document.getElementById(selection[0].id).style.visibility = "hidden";
-            document.getElementById(selection[1].id).style.visibility = "hidden";
             setTimeout(() => {
                 document.getElementById(selection[0].id).style.visibility = "hidden";
                 document.getElementById(selection[1].id).style.visibility = "hidden";
@@ -152,8 +158,8 @@ const playerChange = (playerOne, playerTwo) => {
         playerOne.playerStatus = false;
         playerTwo.playerStatus = true;
         setTimeout(() => {
-            document.getElementById('player1').classList.toggle('player-active');
-            document.getElementById('player2').classList.toggle('player-active');
+            document.getElementById("player1").classList.toggle("player-active");
+            document.getElementById("player2").classList.toggle("player-active");
         }, 1000);
         // clearInterval(playerInterval);
         // playerInterval;
@@ -161,8 +167,8 @@ const playerChange = (playerOne, playerTwo) => {
     }
     else if (playerTwo.playerStatus === true) {
         setTimeout(() => {
-            document.getElementById('player1').classList.toggle('player-active');
-            document.getElementById('player2').classList.toggle('player-active');
+            document.getElementById("player1").classList.toggle("player-active");
+            document.getElementById("player2").classList.toggle("player-active");
         }, 1000);
         playerOne.playerStatus = true;
         playerTwo.playerStatus = false;
@@ -180,10 +186,10 @@ const playerChange = (playerOne, playerTwo) => {
 const updateLivescore = (player) => {
     player.playerScore += 1;
     if (player.id === 1) {
-        document.getElementById("player1-score").innerHTML = (player.playerScore).toString();
+        document.getElementById("player1-score").innerHTML = player.playerScore.toString();
     }
     else {
-        document.getElementById("player2-score").innerHTML = (player.playerScore).toString();
+        document.getElementById("player2-score").innerHTML = player.playerScore.toString();
     }
     console.log(player.playerName, player.playerScore);
 };
@@ -233,6 +239,10 @@ playerTwoLoginButton.addEventListener("click", () => {
     document.getElementById("loginForm-player2").style.display = "block";
     document.getElementById("signupForm-player2").style.display = "none";
 });
+let playersJoined = {
+    playerOne: false,
+    playerTwo: false,
+};
 let login = document.getElementsByClassName("login-form");
 for (let i = 0; i < login.length; i++) {
     login[i].addEventListener("submit", (e) => {
@@ -245,10 +255,16 @@ for (let i = 0; i < login.length; i++) {
         };
         console.log(playerLogin);
         if (playerLogin.player == "PlayerOne") {
+            playersJoined.playerOne = true;
             console.log("Player One", playerLogin);
         }
         else if (playerLogin.player == "PlayerTwo") {
+            playersJoined.playerTwo = true;
             console.log("Player Two", playerLogin);
+        }
+        if (playersJoined.playerOne && playersJoined.playerTwo) {
+            document.getElementById("login").style.display = "none";
+            document.getElementById("category-section").style.display = "block";
         }
     });
 }

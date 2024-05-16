@@ -5,6 +5,10 @@ import {
   PlayerType,
 } from "./types/types";
 
+// document.getElementById("login")!.style.display = "block";
+document.getElementById("category-section")!.style.display = "none";
+document.getElementById("game-section")!.style.display = "none";
+
 const imageData = [
   {
     id: 1,
@@ -55,8 +59,16 @@ let categoryBtns: HTMLCollectionOf<HTMLButtonElement> =
     "category-btn"
   ) as HTMLCollectionOf<HTMLButtonElement>;
 
+const categorySelection = (categoryName: string): void => {
+  console.log(categoryName);
+
+  loadCards(imageData, 8);
+  document.getElementById("category-section")!.style.display = "none";
+  document.getElementById("game-section")!.style.display = "block";
+};
 for (let i = 0; i < categoryBtns.length; i++) {
   categoryBtns[i].addEventListener("click", () => {
+    console.log(categoryBtns[i].value);
     categorySelection(categoryBtns[i].value);
   });
 }
@@ -74,7 +86,6 @@ let playerTwo: PlayerType = {
   playerScore: 0,
 };
 
-
 const addImageEventListener = () => {
   let imageTiles: HTMLCollectionOf<HTMLDivElement> =
     document.getElementsByClassName(
@@ -83,7 +94,7 @@ const addImageEventListener = () => {
   for (let i = 0; i < imageTiles.length; i++) {
     imageTiles[i].addEventListener("click", function () {
       imageTiles[i].classList.toggle("rotated");
-      imageTiles[i].style.pointerEvents="none"
+      imageTiles[i].style.pointerEvents = "none";
       let image = imageTiles[i]!.getElementsByTagName("img");
       let imgData = imageData.filter(
         (img) => Number(imageTiles[i].dataset.imgId) == img.id
@@ -128,8 +139,6 @@ const loadCards = (data: ImageTileType[], noOfCards: number) => {
 };
 console.log("asd");
 
-loadCards(imageData, 8);
-
 let imageTiles: HTMLCollectionOf<HTMLDivElement> =
   document.getElementsByClassName(
     "image-cards"
@@ -149,7 +158,6 @@ for (let i = 0; i < imageTiles.length; i++) {
     checkCards(selectedCards);
   });
 }
-// loadCards(imageData, 8);
 
 // addImageEventListener();
 let selectedCards: HTMLDivElement[] = [];
@@ -157,8 +165,12 @@ function checkCards(selection: HTMLDivElement[]) {
   if (selection.length === 2) {
     if (selection[0].dataset.imgId === selection[1].dataset.imgId) {
       setTimeout(() => {
-        (document.getElementById(selection[0].id) as HTMLDivElement).style.visibility = "hidden";
-        (document.getElementById(selection[1].id)as HTMLDivElement).style.visibility = "hidden";
+        (
+          document.getElementById(selection[0].id) as HTMLDivElement
+        ).style.visibility = "hidden";
+        (
+          document.getElementById(selection[1].id) as HTMLDivElement
+        ).style.visibility = "hidden";
       }, 1000);
 
       console.log("right choice");
@@ -177,14 +189,12 @@ function checkCards(selection: HTMLDivElement[]) {
         selection[1]!.getElementsByTagName("img")[0].src = "../assets/bg.png";
       }, 1000);
     }
-    selection[0].style.pointerEvents="auto";
-    selection[1].style.pointerEvents="auto";
+    selection[0].style.pointerEvents = "auto";
+    selection[1].style.pointerEvents = "auto";
     selectedCards = [];
     if (imagesId.length == 0) getWinner(playerOne, playerTwo);
-    
   }
 }
-
 
 // change player
 const playerChange = (playerOne: PlayerType, playerTwo: PlayerType): void => {
@@ -192,16 +202,24 @@ const playerChange = (playerOne: PlayerType, playerTwo: PlayerType): void => {
     playerOne.playerStatus = false;
     playerTwo.playerStatus = true;
     setTimeout(() => {
-      (document.getElementById('player1')as HTMLDivElement).classList.toggle('player-active');
-      (document.getElementById('player2')as HTMLDivElement).classList.toggle('player-active');
+      (document.getElementById("player1") as HTMLDivElement).classList.toggle(
+        "player-active"
+      );
+      (document.getElementById("player2") as HTMLDivElement).classList.toggle(
+        "player-active"
+      );
     }, 1000);
     // clearInterval(playerInterval);
     // playerInterval;
     console.log("player Two turn");
   } else if (playerTwo.playerStatus === true) {
     setTimeout(() => {
-      (document.getElementById('player1')as HTMLDivElement).classList.toggle('player-active');
-      (document.getElementById('player2')as HTMLDivElement).classList.toggle('player-active');
+      (document.getElementById("player1") as HTMLDivElement).classList.toggle(
+        "player-active"
+      );
+      (document.getElementById("player2") as HTMLDivElement).classList.toggle(
+        "player-active"
+      );
     }, 1000);
     playerOne.playerStatus = true;
     playerTwo.playerStatus = false;
@@ -222,14 +240,16 @@ const playerChange = (playerOne: PlayerType, playerTwo: PlayerType): void => {
 
 const updateLivescore = (player: PlayerType) => {
   player.playerScore += 1;
-  if(player.id ===1){
-    (document.getElementById("player1-score") as HTMLParagraphElement).innerHTML=(player.playerScore).toString()
-  }
-  else{
-    (document.getElementById("player2-score") as HTMLParagraphElement).innerHTML=(player.playerScore).toString()
+  if (player.id === 1) {
+    (
+      document.getElementById("player1-score") as HTMLParagraphElement
+    ).innerHTML = player.playerScore.toString();
+  } else {
+    (
+      document.getElementById("player2-score") as HTMLParagraphElement
+    ).innerHTML = player.playerScore.toString();
   }
   console.log(player.playerName, player.playerScore);
-
 };
 
 function shuffleArray(array: any[]) {
@@ -306,9 +326,15 @@ playerTwoLoginButton.addEventListener("click", () => {
   ).style.display = "none";
 });
 
-let login = document.getElementsByClassName("login-form") as HTMLCollectionOf<HTMLFormElement>;
-for(let i=0;i<login.length;i++){
+let playersJoined = {
+  playerOne: false,
+  playerTwo: false,
+};
 
+let login = document.getElementsByClassName(
+  "login-form"
+) as HTMLCollectionOf<HTMLFormElement>;
+for (let i = 0; i < login.length; i++) {
   login[i].addEventListener("submit", (e) => {
     e.preventDefault();
     const formData = new FormData(login[i]);
@@ -317,21 +343,27 @@ for(let i=0;i<login.length;i++){
       password: formData.get("password") as string,
       player: formData.get("player") as string,
     };
-    
+
     console.log(playerLogin);
-    
-    
+
     if (playerLogin.player == "PlayerOne") {
+      playersJoined.playerOne = true;
       console.log("Player One", playerLogin);
-    } else if(playerLogin.player=="PlayerTwo"){
+    } else if (playerLogin.player == "PlayerTwo") {
+      playersJoined.playerTwo = true;
       console.log("Player Two", playerLogin);
+    }
+    if (playersJoined.playerOne && playersJoined.playerTwo) {
+      document.getElementById("login")!.style.display = "none";
+      document.getElementById("category-section")!.style.display = "block";
     }
   });
 }
 
-let signup = document.getElementsByClassName("signup-form") as HTMLCollectionOf<HTMLFormElement>;
-for(let i=0;i<signup.length;i++){
-
+let signup = document.getElementsByClassName(
+  "signup-form"
+) as HTMLCollectionOf<HTMLFormElement>;
+for (let i = 0; i < signup.length; i++) {
   signup[i].addEventListener("submit", (e) => {
     e.preventDefault();
     const formData = new FormData(signup[i]);
@@ -347,11 +379,4 @@ for(let i=0;i<signup.length;i++){
       console.log("Player Two", playerSignup);
     }
   });
-  
 }
-const categorySelection = (categoryName: string): void => {
-  console.log(categoryName);
-
-  loadCards(imageData, 8);
-  document.getElementById("category-section")!.style.display = "none";
-};

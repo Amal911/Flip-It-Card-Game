@@ -131,8 +131,52 @@
       </div>
     </section>
 
-    <section id="game-section" style="display: none">
-      <div class="container" id="cards-container"></div>
+    <section id="category-section">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center gap-5"
+        id="category-container"
+      >
+        <h1>Select Category</h1>
+        <div class="d-flex gap-3">
+          <button class="btn btn-secondary category-btn" value="animals">
+            Animals
+          </button>
+          <button class="btn btn-secondary category-btn" value="fruits">
+            Fruits
+          </button>
+          <button class="btn btn-secondary category-btn" value="flowers">
+            Flowers
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="game-section">
+      <div class="container" id="game-container">
+        <div class="card d-flex flex-column" id="live-score-card">
+          <h3>Score Card</h3>
+          <div class="player d-flex flex-row text-center player-active" id="player1">
+            <div class="player-icon">
+              <img src="../assets/user-icon-1.png" alt="" />
+            </div>
+            <div class="player-name-score d-flex flex-column">
+              <div class="player-name player-styles"><p id="player1-name">Jisna</p></div>
+              <div class="player-score player-styles"><p id="player1-score">0</p></div>
+            </div>
+          </div>
+          <div class="player d-flex flex-row text-center" id="player2">
+            <div class="player-icon">
+              <img src="../assets/user-icon-2.png" alt="" />
+            </div>
+            <div class="player-name-score d-flex flex-column">
+              <div class="player-name player-styles"><p id="player2-name">Gopika</p></div>
+              <div class="player-score player-styles"><p id="player2-score">0</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="container" id="cards-container"></div>
+        <div></div>
+      </div>
     </section>
 
     <script

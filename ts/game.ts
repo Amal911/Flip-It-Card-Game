@@ -50,6 +50,52 @@ const imageData = [
 
 let imagesId: number[] = [];
 
+let categoryBtns: HTMLCollectionOf<HTMLButtonElement> =
+  document.getElementsByClassName(
+    "category-btn"
+  ) as HTMLCollectionOf<HTMLButtonElement>;
+
+for (let i = 0; i < categoryBtns.length; i++) {
+  categoryBtns[i].addEventListener("click", () => {
+    categorySelection(categoryBtns[i].value);
+  });
+}
+
+let playerOne: PlayerType = {
+  id: 1,
+  playerName: "Player 1",
+  playerStatus: true,
+  playerScore: 0,
+};
+let playerTwo: PlayerType = {
+  id: 2,
+  playerName: "Player 2",
+  playerStatus: false,
+  playerScore: 0,
+};
+
+
+const addImageEventListener = () => {
+  let imageTiles: HTMLCollectionOf<HTMLDivElement> =
+    document.getElementsByClassName(
+      "image-cards"
+    ) as HTMLCollectionOf<HTMLDivElement>;
+  for (let i = 0; i < imageTiles.length; i++) {
+    imageTiles[i].addEventListener("click", function () {
+      imageTiles[i].classList.toggle("rotated");
+      imageTiles[i].style.pointerEvents="none"
+      let image = imageTiles[i]!.getElementsByTagName("img");
+      let imgData = imageData.filter(
+        (img) => Number(imageTiles[i].dataset.imgId) == img.id
+      );
+      image[0].src = imgData[0].imageUrl;
+      selectedCards.push(imageTiles[i]);
+
+      checkCards(selectedCards);
+    });
+  }
+};
+
 const loadCards = (data: ImageTileType[], noOfCards: number) => {
   const tiles = data.slice(0, noOfCards);
   tiles.forEach((tile) => {
@@ -78,7 +124,9 @@ const loadCards = (data: ImageTileType[], noOfCards: number) => {
 
     imageTileContainer?.appendChild(imageElement);
   }
+  addImageEventListener();
 };
+console.log("asd");
 
 loadCards(imageData, 8);
 
@@ -101,13 +149,17 @@ for (let i = 0; i < imageTiles.length; i++) {
     checkCards(selectedCards);
   });
 }
+// loadCards(imageData, 8);
 
+// addImageEventListener();
 let selectedCards: HTMLDivElement[] = [];
 function checkCards(selection: HTMLDivElement[]) {
   if (selection.length === 2) {
     if (selection[0].dataset.imgId === selection[1].dataset.imgId) {
-      document.getElementById(selection[0].id)!.style.visibility = "hidden";
-      document.getElementById(selection[1].id)!.style.visibility = "hidden";
+      setTimeout(() => {
+        (document.getElementById(selection[0].id) as HTMLDivElement).style.visibility = "hidden";
+        (document.getElementById(selection[1].id)as HTMLDivElement).style.visibility = "hidden";
+      }, 1000);
 
       console.log("right choice");
       imagesId = imagesId.filter(
@@ -125,33 +177,32 @@ function checkCards(selection: HTMLDivElement[]) {
         selection[1]!.getElementsByTagName("img")[0].src = "../assets/bg.png";
       }, 1000);
     }
+    selection[0].style.pointerEvents="auto";
+    selection[1].style.pointerEvents="auto";
     selectedCards = [];
     if (imagesId.length == 0) getWinner(playerOne, playerTwo);
+    
   }
 }
 
-let playerOne: PlayerType = {
-  id: 1,
-  playerName: "Player 1",
-  playerStatus: true,
-  playerScore: 0,
-};
-let playerTwo: PlayerType = {
-  id: 2,
-  playerName: "Player 2",
-  playerStatus: false,
-  playerScore: 0,
-};
 
 // change player
 const playerChange = (playerOne: PlayerType, playerTwo: PlayerType): void => {
   if (playerOne.playerStatus === true) {
     playerOne.playerStatus = false;
     playerTwo.playerStatus = true;
+    setTimeout(() => {
+      (document.getElementById('player1')as HTMLDivElement).classList.toggle('player-active');
+      (document.getElementById('player2')as HTMLDivElement).classList.toggle('player-active');
+    }, 1000);
     // clearInterval(playerInterval);
     // playerInterval;
     console.log("player Two turn");
   } else if (playerTwo.playerStatus === true) {
+    setTimeout(() => {
+      (document.getElementById('player1')as HTMLDivElement).classList.toggle('player-active');
+      (document.getElementById('player2')as HTMLDivElement).classList.toggle('player-active');
+    }, 1000);
     playerOne.playerStatus = true;
     playerTwo.playerStatus = false;
     console.log("player one turn");
@@ -171,7 +222,14 @@ const playerChange = (playerOne: PlayerType, playerTwo: PlayerType): void => {
 
 const updateLivescore = (player: PlayerType) => {
   player.playerScore += 1;
+  if(player.id ===1){
+    (document.getElementById("player1-score") as HTMLParagraphElement).innerHTML=(player.playerScore).toString()
+  }
+  else{
+    (document.getElementById("player2-score") as HTMLParagraphElement).innerHTML=(player.playerScore).toString()
+  }
   console.log(player.playerName, player.playerScore);
+
 };
 
 function shuffleArray(array: any[]) {
@@ -291,3 +349,9 @@ for(let i=0;i<signup.length;i++){
   });
   
 }
+const categorySelection = (categoryName: string): void => {
+  console.log(categoryName);
+
+  loadCards(imageData, 8);
+  document.getElementById("category-section")!.style.display = "none";
+};

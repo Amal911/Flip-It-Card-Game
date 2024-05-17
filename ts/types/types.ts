@@ -4,6 +4,11 @@ interface PlayerType {
   playerScore: number;
   playerStatus: boolean;
 }
+interface FeedbackType {
+  rating?: number;
+  name: string;
+  comments: string;
+}
 
 interface ImageTileType {
   id: number;
@@ -29,4 +34,4 @@ interface ImageDataType {
   fruits:ImageTileType[],
   flowers:ImageTileType[]
 }
-export { ImageTileType, PlayerType, PlayerLoginType, PlayerSigninType,ImageDataType };
+export { ImageTileType, PlayerType, PlayerLoginType, PlayerSigninType,ImageDataType,FeedbackType };

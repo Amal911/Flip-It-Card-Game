@@ -1,0 +1,504 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poetsen+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poetsen+One&display=swap');
+
+body {
+    margin: 0;
+    padding: 0px;
+}
+#game-section {
+    background-image: url("../assets/background-game.png");
+    width: 100vw;
+    height: 100vh;
+    background-size: contain ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#game-container{
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}     
+#game-container #live-score-card{
+  gap: 30px;
+  padding: 20px;
+  height: 100%;
+  border-radius: 20px;
+  border: 5px solid black;
+  /* background-color: rgba(255, 208, 253, 0.5); */
+  background-image: url("../assets/background-score-card.jpg");
+  background-size: cover;
+  box-shadow: 2px 2px 3px rgb(62, 62, 62);
+} 
+
+#game-container #live-score-card h3{
+  margin-top: -50px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-align: center;
+  border: 3px solid black;
+  background-color: rgb(255, 236, 128);
+  color: black;
+  font-family: "Pacifico", cursive;
+  
+}
+#game-container #live-score-card .player{
+  gap: 20px;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 3px black;
+  border: 5px solid rgb(87, 87, 87);
+}
+
+
+
+#game-container #live-score-card  .player-active{
+  border: 5px solid rgb(0, 255, 8);
+}
+
+#game-container #live-score-card #player1{
+  background-color: rgba(228, 149, 149, 0.9);
+}
+#game-container #live-score-card #player2{
+  background-color: rgba(157, 149, 228, 0.9);
+} 
+
+
+
+#game-container #live-score-card .player .player-icon img{
+  width: 70px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid black;
+  box-shadow: 0px 0px 6px black;
+}
+#game-container #live-score-card .player .player-name-score{
+  padding:10px;
+  gap: 10px;
+}
+#game-container #live-score-card .player .player-name-score .player-styles{
+  border: 1px solid black;
+  padding: 5px 10px;
+  text-align: center;
+  border-radius: 10px;
+  font-family: "Rowdies", sans-serif;
+  box-shadow: 1px 1px 3px black;
+}
+#game-container #live-score-card .player .player-name-score .player-name{
+  font-size: 20px;
+  background-color: rgba(255, 236, 128, 0.726);
+}
+#game-container #live-score-card .player .player-name-score .player-score{
+  font-size: 40px;
+  background-color: rgb(154, 238, 255);
+}
+.player-styles p{
+ margin: 0;
+}
+#game-section .reveal-name{
+  /* width: 200px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#game-section .reveal-name p{
+  background-color: rgba(255, 115, 0, 0.744);
+  padding: 5px 10px;
+  font-size: 45px;
+  font-family: "Luckiest Guy", cursive;
+  border-radius: 10px;
+  border: 2px solid rgb(92, 92, 92);
+  box-shadow: 2px 2px 3px grey;
+}
+
+
+#cards-container{
+    width: 45%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+#cards-container .image-cards{
+    border-radius: 10px;
+}
+#cards-container .image-cards {
+  /* background-color: rgb(90, 90, 90); */
+  border-radius: 10px;
+  /* box-shadow: 2px 2px 5px rgb(90, 90, 90); */
+}
+#cards-container .image-cards img {
+  width: 100%;
+  border: 2px solid rgba(75, 75, 75, 0.799);
+  box-shadow: 2px 2px 5px rgb(90, 90, 90);
+  border-radius: 10px;
+  transition: scale 0.5s ease, transform 0.5s;
+}
+#cards-container .image-cards:hover img {
+  scale: 1.1;
+  /* transform: rotateY(360deg); */
+}
+
+
+#clicker {
+  width: 100px;
+  height: 100px;
+  background-color: Green;
+}
+.rotating {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.rotated {
+  transform: rotateY(360deg);
+  -webkit-transform: rotateY(360deg);
+  -moz-transform: rotateY(360deg);
+  -o-transform: rotateY(360deg);
+}
+#login {
+  background-image: url("../assets/background-game.png");
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+}
+#login .card {
+  border-radius: 40px;
+}
+#login #signup-section {
+  display: none;
+}
+#login .submit-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#login .heading {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+}
+#login .toogleScreen {
+  cursor: pointer;
+}
+
+
+#player1-login, #player2-login{
+  width: 40%;
+}
+
+#loginForm-player1, #loginForm-player2{
+  background-image: linear-gradient(185deg,rgba(0, 0, 0, 0.607),rgba(0, 0, 0, 0.607)), url('../assets/login.jpg');
+  /* background-color: rgba(255, 0, 200, 0.532); */
+  border: 3px solid rgb(0, 145, 150);
+  width: 80%;
+}
+
+#loginForm-player1 .login-form .form-label{
+  font-family: "Rowdies", sans-serif;
+  font-size: 14px;
+  color: white;
+}
+#loginForm-player2 .login-form .form-label{
+  font-family: "Rowdies", sans-serif;
+  font-size: 14px;
+  color: white;
+}
+
+#loginForm-player1 .signup{
+  font-family: "Rowdies", sans-serif;
+  font-size: 11px;
+  color: white;
+}
+#loginForm-player2 .signup{
+  font-family: "Rowdies", sans-serif;
+  font-size: 11px;
+  color: white;
+}
+#loginForm-player1 .signup a{
+  color: rgb(255, 149, 0);
+  text-decoration: none;
+}
+#loginForm-player2 .signup a{
+  color: #ff9500;
+  text-decoration: none;
+}
+.form-control{
+  background-color: antiquewhite;
+}
+
+#player1-login #heading{
+  font-family: "Rowdies", sans-serif;
+  font-weight: 500;
+  color: rgb(186, 162, 37);
+  font-size: 40px;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+#player2-login #heading{
+  font-family: "Rowdies", sans-serif;
+  font-weight: 500;
+  color: rgb(186, 162, 37);
+  font-size: 40px;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+#signupForm-player1, #signupForm-player2{
+  background-image: linear-gradient(185deg,rgba(0, 0, 0, 0.717),rgba(0, 0, 0, 0.756)), url('../assets/login.jpg');
+  /* background-color: rgba(255, 0, 200, 0.532); */
+  border: 3px solid rgb(0, 145, 150);
+  width: 80%;
+}
+#signupForm-player1 .heading{
+  font-family: "Rowdies", sans-serif;
+  font-weight: 500;
+  color: rgb(186, 162, 37);
+  font-size: 40px;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+#signupForm-player2 .heading{
+  font-family: "Rowdies", sans-serif;
+  font-weight: 500;
+  color: rgb(186, 162, 37);
+  font-size: 40px;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+#signupForm-player1 #sign-up-form .form-label{
+  font-family: "Rowdies", sans-serif;
+  font-size: 14px;
+  color: white;
+}
+#signupForm-player2 .signup-form .form-label{
+  font-family: "Rowdies", sans-serif;
+  font-size: 14px;
+  color: white;
+}
+
+#signupForm-player1 .signup{
+  font-family: "Rowdies", sans-serif;
+  font-size: 11px;
+  color: white;
+}
+#signupForm-player2 .signup{
+  font-family: "Rowdies", sans-serif;
+  font-size: 11px;
+  color: white;
+}
+#signupForm-player1 .signup a{
+  color: rgb(255, 149, 0);
+  text-decoration: none;
+}
+#signupForm-player2 .signup a{
+  color: rgb(255, 149, 0);
+  text-decoration: none;
+}
+
+.login-button{
+  background-color: #c56a6a;
+  font-weight: bold;
+  color: white;
+}
+
+#cards-container .image-cards:hover img{
+    scale: 1.1;
+    /* transform: rotateY(360deg); */
+}
+
+
+
+
+#clicker { 
+    width: 100px; 
+    height: 100px; 
+    background-color: Green; 
+}
+
+.rotating { 
+    -webkit-transition: all 0.3s ;
+    -moz-transition: all 0.3s ;
+    -o-transition: all 0.3s ;
+    transition: all 0.3s ;
+}
+
+.rotated { 
+    transform:rotateY(180deg);
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg); 
+    -o-transform:rotateY(180deg);
+}
+
+
+
+#category-section{
+    background-image: url("../assets/background-game.png");
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+}
+#category-container{
+    height: 100%;
+}
+#category-container .card{
+  padding: 20px;
+  height: 400px;
+  background-color: rgba(0, 0, 0, 0.317);
+  border: 7px solid rgb(255, 154, 71);
+  border-radius: 30px;
+  box-shadow: 3px 3px 3px grey;
+}
+#category-container .card h1{
+  font-family: "Pacifico", cursive;
+  color: rgb(255, 236, 67);
+  margin-bottom: 80px;
+}
+#category-container .card button{
+  font-family: "Rowdies", sans-serif;
+  font-size: larger;
+}
+#category-container .btn1{
+  background-color: rgb(241, 123, 232);
+}
+#category-container .btn2{
+  background-color: rgb(239, 241, 123);
+}
+#category-container .btn3{
+  background-color: rgb(123, 241, 139);
+}
+
+
+
+
+#winner-section {
+  background-image: url("../assets/background-game.png");
+  background-size: contain;
+  height: 120vh;
+  }
+
+  #winner-section #main-winner-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 105vh;
+  }
+
+  #winner-section #leaderboard-container{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    width: 350px;
+    /* max-height: 140px;
+    overflow-y: scroll; */
+    border: 4px solid yellow;
+    border-radius: 8%;
+  }
+
+  #winner-section #leaderboard-container h3{
+    font-family: "Poetsen One", sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  #winner-section #leaderboard-container th{
+    font-family: "Poetsen One", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  #winner-section #leaderboard-container td{
+    font-family: "Poetsen One", sans-serif;
+    font-size: 14px;
+    font-weight: 80;
+  }
+
+  #winner-section .leaderboard-table{
+    width: 100%;
+    border: 4px solid yellow;
+  }
+
+#winner-section #winner-container{
+    height: 200px;
+    width: 350px;
+    background-image: linear-gradient(185deg,rgba(255, 255, 255, 0.55),rgba(255, 255, 255, 0.55)), url('../assets/inst-bg.jpg');
+    border-radius: 10%;
+    border: 7px solid yellow;
+    background-repeat:no-repeat;
+    background-size: cover;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#winner-section .container p{
+  text-align: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 600;
+  font-family: "Poetsen One", sans-serif;
+  /* font-family:Verdana, Geneva, Tahoma, sans-serif; */
+  color: #000000;
+}
+
+#winner-section #star-container{
+  justify-content: center;
+  align-items: center;
+}
+
+#winner-section #star1, #star3{
+  height: 70px;
+  width: 70px;
+  margin-top: -60px;
+}
+
+#winner-section #star2{
+  height: 110px;
+  width: 110px;
+  margin-top: -60px;
+}
+
+#winner-section .button-container{
+  position: relative;
+  bottom: 50px;
+  left: 10px;
+}
+
+#winner-section .button-container .button{
+  height: 60px;
+  width: 150px;
+  font-weight: 600;
+  font-size: 25px;
+  margin: 10px;
+  /* box-shadow: 0px 1px 1px rgba(99, 99, 99, 0.854); */
+  font-family: "Pacifico", cursive;
+  background-color: rgb(196, 191, 50);
+  border-radius: 10%;
+}
+
+
+/* #login{
+  display: none;
+} */
+/* #category-section{
+  display: none;
+}
+#winner-section{
+  display: none;
+} */

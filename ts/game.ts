@@ -6,7 +6,8 @@ import {
   PlayerType,
 } from "./types/types";
 import { imageData } from "./imageData.js";
-// document.getElementById("login")!.style.display = "block";
+
+
 document.getElementById("category-section")!.style.display = "none";
 document.getElementById("game-section")!.style.display = "none";
 document.getElementById("winner-section")!.style.display = "none";
@@ -80,7 +81,7 @@ const loadCards = (data: ImageTileType[], noOfCards: number) => {
 
   for (let i = 0; i < noOfCards * 2; i++) {
     const tile = array[i];
-    // console.log(tile);
+
 
     const imageElement = document.createElement("div");
     imageElement.classList.add("image-cards");
@@ -91,7 +92,7 @@ const loadCards = (data: ImageTileType[], noOfCards: number) => {
     imageElement.innerHTML = `
     <img src="../assets/bg.png" alt="">
     `;
-    // <img src="${tile.imageUrl}" alt="">
+
 
     imageTileContainer?.appendChild(imageElement);
   }
@@ -160,8 +161,7 @@ const playerChange = (playerOne: PlayerType, playerTwo: PlayerType): void => {
         "player-active"
       );
     }, 1000);
-    // clearInterval(playerInterval);
-    // playerInterval;
+
     console.log("player Two turn");
   } else if (playerTwo.playerStatus === true) {
     setTimeout(() => {
@@ -175,7 +175,7 @@ const playerChange = (playerOne: PlayerType, playerTwo: PlayerType): void => {
     playerOne.playerStatus = true;
     playerTwo.playerStatus = false;
     console.log("player one turn");
-    // clearInterval(playerInterval);
+
   }
 };
 
@@ -291,57 +291,3 @@ playerTwoLoginButton.addEventListener("click", () => {
   ).style.display = "none";
 });
 
-// let playersJoined = {
-//   playerOne: false,
-//   playerTwo: false,
-// };
-
-// let login = document.getElementsByClassName(
-//   "login-form"
-// ) as HTMLCollectionOf<HTMLFormElement>;
-// for (let i = 0; i < login.length; i++) {
-//   login[i].addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     const formData = new FormData(login[i]);
-//     let playerLogin: PlayerLoginType = {
-//       username: formData.get("username") as string,
-//       password: formData.get("password") as string,
-//       player: formData.get("player") as string,
-//     };
-
-//     console.log(playerLogin);
-
-//     if (playerLogin.player == "PlayerOne") {
-//       playersJoined.playerOne = true;
-//       console.log("Player One", playerLogin);
-//     } else if (playerLogin.player == "PlayerTwo") {
-//       playersJoined.playerTwo = true;
-//       console.log("Player Two", playerLogin);
-//     }
-//     if (playersJoined.playerOne && playersJoined.playerTwo) {
-//       document.getElementById("login")!.style.display = "none";
-//       document.getElementById("category-section")!.style.display = "block";
-//     }
-//   });
-// }
-
-// let signup = document.getElementsByClassName(
-//   "signup-form"
-// ) as HTMLCollectionOf<HTMLFormElement>;
-// for (let i = 0; i < signup.length; i++) {
-//   signup[i].addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     const formData = new FormData(signup[i]);
-//     let playerSignup: PlayerSigninType = {
-//       name: formData.get("name") as string,
-//       username: formData.get("username") as string,
-//       password: formData.get("password") as string,
-//       player: formData.get("player") as string,
-//     };
-//     if (playerSignup.player == "PlayerOne") {
-//       console.log("Player One", playerSignup);
-//     } else {
-//       console.log("Player Two", playerSignup);
-//     }
-//   });
-// }

@@ -1,8 +1,4 @@
-interface FeedbackType {
-  rating?: number;
-  name: string;
-  comments: string;
-}
+import { FeedbackType } from "./types/types";
 let stars = Array.from(
   document.getElementsByClassName("star") as HTMLCollectionOf<HTMLElement>
 );
